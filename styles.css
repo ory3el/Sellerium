@@ -86,7 +86,7 @@ body.loading {
   .loading-text span { color: var(--gray); font-size: 0.9rem; }
 
 .logo-loading {
-  width: 50px;
+  width: 250px;
   height: auto;
   border-radius: 50%;
   animation: pulse 1.8s ease-in-out infinite;
