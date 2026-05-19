@@ -29,13 +29,13 @@
 
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #f0ede8; }
+  ::-webkit-scrollbar-track { background: #e8edf0; }
   ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
 
   /* TOPBAR */
-  .topbar { background: #1a1510; color: #f5f0e8; text-align: center; padding: 8px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; position: relative; }
+  .topbar { background: #10141a; color: #e8eef5; text-align: center; padding: 8px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; position: relative; }
   .topbar span { opacity: 0.5; margin: 0 8px; }
-  .topbar-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 16px; color: #f5f0e8; opacity: 0.6; }
+  .topbar-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 16px; color: #e8edf5; opacity: 0.6; }
 
   /* HEADER */
   header { background: #fff; border-bottom: 1px solid var(--border2); position: sticky; top: 0; z-index: 1000; }
