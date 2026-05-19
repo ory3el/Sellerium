@@ -316,3 +316,17 @@ document.addEventListener('keydown', e => {
 // INIT
 updateCart();
 renderProducts();
+
+// PRELOADER
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  
+  setTimeout(() => {
+    preloader.classList.add('fade-out');
+    document.body.classList.remove('loading');
+    
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 800);
+    
+  }, 600);
