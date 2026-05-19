@@ -41,12 +41,12 @@
   header { background: #fff; border-bottom: 1px solid var(--border2); position: sticky; top: 0; z-index: 1000; }
   .header-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 68px; }
   .logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--blue); letter-spacing: 1px; flex-shrink: 0; }
-  .logo span { color: #1a1510; font-weight: 300; }
+  .logo span { color: #10151a; font-weight: 300; }
   .nav-main { display: flex; gap: 2px; margin-left: 8px; }
   .nav-main a { padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--muted); border-radius: var(--radius); transition: all 0.2s; letter-spacing: 0.3px; position: relative; }
   .nav-main a:hover, .nav-main a.active { color: var(--text); background: var(--border2); }
   .nav-main a.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--blue); border-radius: 1px; }
-  .search-bar { flex: 1; max-width: 420px; display: flex; align-items: center; background: #f5f1ea; border: 1px solid var(--border2); border-radius: 100px; padding: 0 16px; gap: 8px; transition: border-color 0.2s; }
+  .search-bar { flex: 1; max-width: 420px; display: flex; align-items: center; background: #eaeff5; border: 1px solid var(--border2); border-radius: 100px; padding: 0 16px; gap: 8px; transition: border-color 0.2s; }
   .search-bar:focus-within { border-color: var(--blue); }
   .search-bar input { background: none; border: none; outline: none; color: var(--text); font-size: 13px; flex: 1; padding: 9px 0; }
   .search-bar input::placeholder { color: var(--muted); }
