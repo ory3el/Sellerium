@@ -330,3 +330,4 @@ window.addEventListener('load', () => {
     }, 800);
     
   }, 600);
+});
