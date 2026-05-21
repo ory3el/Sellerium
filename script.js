@@ -317,6 +317,10 @@ document.addEventListener('keydown', e => {
 updateCart();
 renderProducts();
 
+function buttonLink(url) {
+  window.location.href = url;
+}
+
 // PRELOADER
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
