@@ -783,3 +783,48 @@ body.loading {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
   }
 }
+
+/* ==========================================================================
+   TRAVA SÉRIE OURO: DETECÇÃO DE TELA DE TOQUE (Mesmo em Modo Desktop)
+   ========================================================================== */
+@media (pointer: coarse) {
+
+  /* Impede que os cards tentem flutuar, dar zoom ou criar sombras pesadas ao toque */
+  .product-card:hover,
+  .product-card:active,
+  .product-card:focus,
+  .cat-card:hover {
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .product-card:hover .product-img {
+    transform: none !important;
+  }
+
+  /* Garante que os botões de ação fiquem sólidos, visíveis e jogados para a base do card */
+  .product-actions {
+    position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    transform: none !important;
+    padding: 10px 0 0 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin-top: auto !important;
+  }
+
+  /* Aplica estabilização de hardware nas imagens para não piscarem no motor WebKit */
+  .product-img-wrapper {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  .product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+}
