@@ -709,54 +709,77 @@ body.loading {
 }
 
 /* ==========================================================================
-   ESTABILIZADOR ANTIFLICKER DEFINITIVO (MOBILE)
+   TRAVA ANTIFLICKER E ANTI-LAG ULTRA-ESTABILIZADA (MOBILE)
    ========================================================================== */
 @media (max-width: 768px) {
 
-  /* 1. FORÇA COMPORTAMENTO ESTÁTICO (Desliga qualquer tentativa de animação de tamanho) */
-  .product-card, 
-  .product-card *,
-  .cat-card,
-  .cat-card * {
+  /* 1. DESLIGA COMPLETAMENTE RECALCULOS DINÂMICOS NA VITRINE
+     Isso impede que qualquer regra do desktop interfira no scroll do celular */
+  .products-grid *, 
+  .categories-grid *,
+  .product-card,
+  .cat-card {
     transition: none !important;
     transform: none !important;
     animation: none !important;
-    will-change: auto !important;
+    will-change: unset !important; /* Desativa cache de animação que gera fantasmas visuais */
   }
 
-  /* 2. CORREÇÃO DO BUG DE OVERFLOW (O segredo para parar de piscar no Safari/Chrome Mobile) */
-  .product-card, 
-  .cat-card, 
+  /* 2. TRAVA DE PROPORÇÃO DE IMAGEM INFALÍVEL
+     Substitui o aspect-ratio moderno por padding-bottom técnico (técnica mais estável para mobile antigos) */
   .product-img-wrapper {
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
-    /* Força o navegador a fixar a máscara de corte visual sem recalcular no scroll */
-    -webkit-mask-image: -webkit-radial-gradient(white, black); 
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-top: 100% !important; /* Força um quadrado 1:1 perfeito que nunca deforma ou pisca */
+    overflow: hidden !important;
+    background-color: #fff !important;
   }
 
-  /* 3. TRAVA DE ALTURA DOS CARDS
-     Evita que o card mude de tamanho se o navegador achar que você tocou nele */
-  .product-card {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important; /* Mantém todos os cards com tamanho idêntico na linha */
-    justify-content: space-between !important;
+  .product-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 
-  /* Garante que a área do botão não flutue e nem mude o tamanho do card */
+  /* 3. SOLIDIFICAÇÃO DOS BOTÕES DE AÇÃO
+     O botão passa a fazer parte do bloco de texto, sem flutuar por cima da imagem */
   .product-actions {
-    position: static !important;
+    position: relative !important;
     opacity: 1 !important;
     visibility: visible !important;
     display: flex !important;
-    margin-top: auto !important; /* Empurra o botão de comprar sempre para o rodapé do card */
-    transform: none !important;
+    width: 100% !important;
+    padding: 10px 0 0 0 !important;
     background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
   }
 
-  /* 4. EVITA QUE A BARRA DE ROLAGEM DO SISTEMA FAÇA A TELA CHACOALHAR */
-  html, body {
-    overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch;
+  /* 4. ISOLAMENTO DE CAMADA (GPU DETACH)
+     Diz ao celular que os cards são blocos independentes e estáticos */
+  .product-card, 
+  .cat-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 100% !important; /* Obriga todos os cards da mesma linha a terem o mesmo tamanho físico */
+    isolation: isolate !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+  }
+
+  /* Neutraliza estados de toque falsos (evita que o card mude de cor ou suba ao arrastar o dedo) */
+  .product-card:hover, 
+  .product-card:active,
+  .product-card:focus,
+  .cat-card:hover,
+  .cat-card:active {
+    transform: none !important;
+    background: var(--bg2) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
   }
 }
