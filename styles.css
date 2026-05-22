@@ -707,3 +707,60 @@ body.loading {
     padding: 8px !important;
   }
 }
+
+/* ==========================================================================
+   FILTRO ANTI-PISCADA (ANTI-FLICKERING) E ESTABILIZAÇÃO DE SCROLL MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  /* 1. Desativa completamente o efeito de 'passar o mouse' (hover) no celular */
+  .product-card:hover,
+  .cat-card:hover,
+  .sidebar-section:hover {
+    transform: none !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important; /* Força uma sombra estática e leve */
+  }
+
+  /* Impede a imagem do produto de tentar dar zoom ou mexer no scroll */
+  .product-card:hover .product-img {
+    transform: none !important;
+  }
+
+  /* 2. Estabiliza os botões de ação para ficarem fixos e pararem de piscar/sumir */
+  .product-actions {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    transition: none !important; /* Remove transições para evitar repaints na GPU */
+    display: flex !important;
+    padding: 8px 0 0 0 !important;
+  }
+
+  /* 3. Força aceleração de hardware nas imagens para evitar falhas de renderização (fantasmas) */
+  .product-img, 
+  .cat-card img, 
+  .logo img {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+  }
+
+  /* 4. Remove o flash azul/cinza nativo do iOS/Android ao tocar nos elementos */
+  a, 
+  button, 
+  .product-card, 
+  .cat-card {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+  }
+
+  /* 5. Garante que nenhuma animação pesada rode enquanto o usuário arrasta a tela */
+  *, *::before, *::after {
+    /* Evita que transições de layout disputem desempenho com o scroll do celular */
+    transition-duration: 0s !important; 
+    -webkit-transition-duration: 0s !important;
+  }
+}
