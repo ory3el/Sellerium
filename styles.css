@@ -435,6 +435,68 @@ body.loading {
   /* LOADING SKELETON */
   @keyframes shimmer { 0% { background-position: -1000px 0; } 100% { background-position: 1000px 0; } }
 
+/* =========================================
+     CORREÇÕES DO MODAL, CARRINHO E BANNERS 
+     (Adicionar dentro do @media max-width: 768px)
+     ========================================= */
+
+  /* 1. Modal do Produto (Pop-up) */
+  .modal {
+    flex-direction: column; /* Coloca a imagem em cima e o texto em baixo */
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto; /* Permite fazer scroll dentro do modal se o ecrã for muito pequeno */
+  }
+
+  .modal-img-side {
+    width: 100%;
+    min-height: 250px; /* Garante que a imagem tem espaço no mobile */
+    border-right: none;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .modal-info-side {
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* 2. Carrinho Lateral */
+  .cart-sidebar {
+    width: 100%; /* Faz o carrinho ocupar toda a largura do telemóvel */
+    right: -100%; /* Ajuste inicial para esconder corretamente */
+  }
+  .cart-sidebar.open {
+    right: 0;
+  }
+
+  /* 3. Banner de Oferta (Deal Banner) */
+  .deal-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .deal-countdown {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* 4. Newsletter */
+  .newsletter-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .newsletter-input {
+    width: 100%;
+  }
+
+  .btn-subscribe {
+    width: 100%;
+    justify-content: center;
+  }
+
 /* ==========================================================================
    MEDIA QUERY - DISPOSITIVOS MÓVEIS (Telas até 768px)
    ========================================================================== */
