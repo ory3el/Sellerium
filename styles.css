@@ -434,3 +434,162 @@ body.loading {
 
   /* LOADING SKELETON */
   @keyframes shimmer { 0% { background-position: -1000px 0; } 100% { background-position: 1000px 0; } }
+
+/* ==========================================================================
+   MEDIA QUERY - DISPOSITIVOS MÓVEIS (Telas até 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  
+  /* 1. HEADER (CABEÇALHO) */
+  .header-inner {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px 10px;
+  }
+
+  .logo img {
+    width: 180px !important; /* Diminui a logo no mobile */
+    margin: 0 auto;
+  }
+
+  /* Oculta o menu de navegação padrão ou permite que ele quebre a linha */
+  .nav-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%; /* Barra de busca ocupa largura total */
+    order: 3;    /* Joga a busca para baixo das ações principais */
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  /* 2. HERO SECTION (BANNER PRINCIPAL) */
+  .hero-inner {
+    flex-direction: column; /* Coloca o texto em cima e os cards embaixo */
+    text-align: center;
+    padding: 40px 15px;
+    gap: 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem; /* Diminui o tamanho do título principal */
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-btns a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Transforma os status em uma grade de 2x2 */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  /* Oculta os cards flutuantes secundários se poluírem o visual */
+  .hero-visual {
+    width: 100%;
+  }
+
+  /* 3. TRUST BADGES & CATEGORIES */
+  .trust-inner {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas médias */
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 colunas em celulares pequenos */
+    }
+  }
+
+  /* 4. MAIN LAYOUT (PRODUTOS + SIDEBAR) */
+  .main-layout {
+    flex-direction: column; /* Coloca os filtros acima ou abaixo dos produtos */
+    gap: 20px;
+    padding: 10px;
+  }
+
+  /* Transforma a barra lateral em uma seção expansível ou rolável horizontalmente */
+  .sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .category-list {
+    display: flex;
+    overflow-x: auto; /* Permite arrastar as categorias para o lado */
+    white-space: nowrap;
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+
+  .category-btn {
+    width: auto;
+  }
+
+  /* Ajusta a barra de ferramentas dos produtos */
+  .products-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .products-toolbar .view-btns {
+    display: none; /* Esconde os botões de mudar visualização para simplificar */
+  }
+
+  /* Grade de produtos: força duas colunas no celular */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+
+  /* 5. BANNERS & FOOTER */
+  .banner-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr; /* Colunas do rodapé ficam empilhadas */
+    gap: 30px;
+    text-align: center;
+  }
+
+  .footer-brand .logo img {
+    margin: 0 auto;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
