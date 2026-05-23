@@ -106,7 +106,7 @@ function doLogin(){
 
   simulateLoad('btnLogin', () => {
     toast('Login realizado! Redirecionando... 🎉');
-    setTimeout(() => window.location.href = 'dropshop-store.html', 1200);
+    setTimeout(() => window.location.href = '../', 1200);
   });
 }
 
@@ -125,8 +125,8 @@ function doRegister(){
   if(!valid) return;
 
   simulateLoad('btnReg', () => {
-    toast('Conta criada com sucesso! Bem-vindo ao DropShop 🚀');
-    setTimeout(() => window.location.href = 'dropshop-store.html', 1400);
+    toast('Conta criada com sucesso! Bem-vindo ao Sellerium 🚀');
+    setTimeout(() => window.location.href = '../', 1400);
   });
 }
 
