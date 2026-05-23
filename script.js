@@ -31,6 +31,10 @@ function renderStars(r) {
   return s.replace('½','★');
 }
 
+function login(url) {
+  window.location.href = url;
+}
+
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   const search = document.getElementById('searchInput').value.toLowerCase();
