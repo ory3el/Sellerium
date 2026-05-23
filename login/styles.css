@@ -99,7 +99,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f0f6ff;color:#0f1a2e
 .stat-box:hover{transform:translateY(-2px)}
 .stat-val{
   font-family:'Sora',sans-serif;
-  font-size:12px;font-weight:500;color:#fff;
+  font-size:18px;font-weight:500;color:#fff;
   display:block;line-height:1;
 }
 .stat-lbl{font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.8px;margin-top:3px}
