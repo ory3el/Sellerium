@@ -21,7 +21,7 @@
     --rad-lg: 12px;
   }
 
-  .login-area { position: relative; min-height: 580px; display: flex; align-items: center; overflow: hidden; background: var(--bg2); }
+  .login-area { position: center; min-height: 580px; display: flex; align-items: center; overflow: hidden; background: var(--bg2); }
   .login-area { display: inline-flex; align-items: center; gap: 6px; background: var(--blue-dim); border: 1px solid var(--border); color: var(--blue); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 24px; }
   .login-area::before { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
   .login-area h2 { font-family: 'Montserrat', sans-serif; display: flex; gap: 20px; flex-wrap: wrap; }
