@@ -190,7 +190,7 @@
       <div class="frow">
         <div class="fgrp full" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div>
-            <label for="regName">Nome</label>
+            <label for="regName">Nome *</label>
             <input class="finput" id="regName" type="text" placeholder="Seu nome" oninput="clearFieldErr(this)">
             <div class="field-err" id="regNameErr">Campo obrigatório</div>
           </div>
@@ -203,18 +203,19 @@
 
       <div class="frow" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <div class="fgrp">
-        <label for="regEmail">E-mail</label>
+        <label for="regEmail">E-mail *</label>
         <input class="finput" id="regEmail" type="email" placeholder="seu@email.com" oninput="clearFieldErr(this)">
         <div class="field-err" id="regEmailErr">E-mail inválido</div>
       </div>
         <div class="fgrp">
-          <label for="regPhone">Celular</label>
+          <label for="regPhone">Celular *</label>
           <input class="finput" id="regPhone" type="text" placeholder="(00) 00000-0000" oninput="maskPhone(this)" maxlength="15">
+          <div class="field-err" id="regEmailErr">Número inválido</div>
         </div>
       </div>
 
       <div class="fgrp">
-        <label for="regPwd">Senha</label>
+        <label for="regPwd">Senha *</label>
         <div class="finput-wrap">
           <input class="finput" id="regPwd" type="password" placeholder="Crie uma senha forte" style="padding-right:42px" oninput="checkPwd(this.value)">
           <button class="finput-ico" onclick="togglePwd('regPwd',this)" type="button" title="Mostrar senha">👁</button>
