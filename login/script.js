@@ -45,13 +45,6 @@ function clearFieldErr(inp){
 function validateEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
 // ── MASKS ──────────────────────────────────────────────────
-function maskCPF(inp){
-  let v = inp.value.replace(/\D/g,'').slice(0,11);
-  if(v.length > 9) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9);
-  else if(v.length > 6) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);
-  else if(v.length > 3) v = v.slice(0,3)+'.'+v.slice(3);
-  inp.value = v;
-}
 function maskPhone(inp){
   let v = inp.value.replace(/\D/g,'').slice(0,11);
   if(v.length > 6) v = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
@@ -115,11 +108,13 @@ function doRegister(){
   let valid = true;
   const name  = document.getElementById('regName');
   const email = document.getElementById('regEmail');
+  const phone = document.getElementById('regPhone');
   const pwd   = document.getElementById('regPwd');
   const terms = document.getElementById('acceptTerms');
 
   if(!name.value.trim()){ showFieldErr(name,'regNameErr'); valid = false; }
   if(!validateEmail(email.value.trim())){ showFieldErr(email,'regEmailErr'); valid = false; }
+  if(!validatePhone(phone.value.trim())){ showFieldErr(phone,'regPhoneErr'); valid = false; }
   if(pwd.value.length < 8){ showFieldErr(pwd,'regPwdErr'); valid = false; }
   if(!terms.checked){ toast('Aceite os termos para continuar','err'); valid = false; }
   if(!valid) return;
