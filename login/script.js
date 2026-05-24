@@ -9,28 +9,27 @@ function showTab(tab){
 }
 
 // ── GOOGLE LOGIN ────────────────────────────────────────
-  function handleCredentialResponse(response) {
-     const tokenJWT = response.credential;
-     
-     console.log("Token do Google recebido:", tokenJWT);
+window.onload = function () {
+  google.accounts.id.initialize({
+    client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
+    callback: handleCredentialResponse
+  });
 
-     fetch('/api/auth/google', {
-         method: 'POST',
-         headers: {
-             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({ token: tokenJWT })
-     })
-     .then(res => res.json())
-     .then(data => {
-         if (data.success) {
-             window.location.href = "../";
-         } else {
-             alert("Erro ao logar com o Google.");
-         }
-     })
-     .catch(err => console.error("Erro na comunicação com o servidor:", err));
-  }
+  const botaoCustomizado = document.getElementById('meu-botao-google');
+
+  botaoCustomizado.addEventListener('click', () => {
+    google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        google.accounts.id.requestCode();
+      }
+    });
+  });
+};
+
+function handleCredentialResponse(response) {
+   const tokenJWT = response.credential;
+   console.log("Token recebido via botão customizado:", tokenJWT);
+}
 
 // ── FORGOT PASSWORD ────────────────────────────────────────
 function toggleForgot(show){
