@@ -121,7 +121,7 @@ function doRegister(){
 
   if(!name.value.trim()){ showFieldErr(name,'regNameErr'); valid = false; }
   if(!validateEmail(email.value.trim())){ showFieldErr(email,'regEmailErr'); valid = false; }
-  if(!phone.value.trim()){ showFieldErr(phone,'regPhoneErr'); valid = false; }
+  if(!phone.value.length < 11){ showFieldErr(phone,'regPhoneErr'); valid = false; }
   if(pwd.value.length < 8){ showFieldErr(pwd,'regPwdErr'); valid = false; }
   if(!terms.checked){ toast('Aceite os termos para continuar','err'); valid = false; }
   if(!valid) return;
