@@ -135,12 +135,24 @@
 </div>
         
 <div class="social-row">
-<div style="position: relative; flex: 1;">
-  <button type="button" class="soc-btn" style="width: 100%; margin: 0;">
-    <span class="soc-ico"><img src="../images/google_t.png" style="width: 30px; height: auto; display: block;" alt="Google"/></span> Google
+<div style="position: relative; flex: 1; display: block; isolation: isolate;">
+  
+  <button type="button" class="soc-btn" style="width: 100%; margin: 0; pointer-events: none;">
+    <span class="soc-ico">
+      <img src="../images/google_t.png" style="width: 30px; height: auto; display: block;" alt="Google"/>
+    </span> Google
   </button>
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 10; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-    <div id="google-iframe-login" class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" data-click_listener="onGoogleClick"></div>
+
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 99999; pointer-events: auto; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+    <div id="google-iframe-login" class="g_id_signin" 
+         data-type="standard" 
+         data-size="large" 
+         data-theme="outline" 
+         data-text="sign_in_with" 
+         data-shape="rectangular" 
+         data-logo_alignment="left"
+         data-click_listener="onGoogleClick">
+    </div>
   </div>
 </div>
   
