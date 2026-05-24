@@ -182,6 +182,16 @@
 
       <div class="social-row">
         <button class="soc-btn" onclick="socialLogin('Google')">
+
+          <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+           <div id="g_id_onload"
+               data-client_id="SEU_ID_DO_GOOGLE.apps.googleusercontent.com"
+               data-context="signin"
+               data-ux_mode="popup"
+              data-callback="handleCredentialResponse"
+              data-auto_prompt="false">
+          </div>
           <span class="soc-ico">
             <img src="../images/google_t.png" style="width: 30px; height: auto; display: block;" alt="Google"/>
           </span> Google
@@ -276,25 +286,6 @@
 </div>
   
 <script src="script.js"></script>
-
-  
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
-<div id="g_id_onload"
-     data-client_id="713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-callback="handleCredentialResponse"
-     data-auto_prompt="false">
-</div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="rounded"
-     data-theme="outline"
-     data-size="large"
-     data-logo_alignment="left">
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js"></script>
 <script>
