@@ -277,10 +277,51 @@
   
 <script src="script.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js"></script>
+  
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
+<div id="g_id_onload"
+     data-client_id="713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rounded"
+     data-theme="outline"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
 <script>
-  // Inicializa o Quicklink
+  function handleCredentialResponse(response) {
+     const tokenJWT = response.credential;
+     
+     console.log("Token do Google recebido:", tokenJWT);
+
+     fetch('/api/auth/google', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({ token: tokenJWT })
+     })
+     .then(res => res.json())
+     .then(data => {
+         if (data.success) {
+             window.location.href = "../";
+         } else {
+             alert("Erro ao logar com o Google.");
+         }
+     })
+     .catch(err => console.error("Erro na comunicação com o servidor:", err));
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js"></script>
+<script>
   window.addEventListener('load', () => {
     quicklink.listen();
   });
