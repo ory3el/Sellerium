@@ -8,6 +8,30 @@ function showTab(tab){
   if(isLogin) toggleForgot(false);
 }
 
+// ── GOOGLE LOGIN ────────────────────────────────────────
+  function handleCredentialResponse(response) {
+     const tokenJWT = response.credential;
+     
+     console.log("Token do Google recebido:", tokenJWT);
+
+     fetch('/api/auth/google', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({ token: tokenJWT })
+     })
+     .then(res => res.json())
+     .then(data => {
+         if (data.success) {
+             window.location.href = "../";
+         } else {
+             alert("Erro ao logar com o Google.");
+         }
+     })
+     .catch(err => console.error("Erro na comunicação com o servidor:", err));
+  }
+
 // ── FORGOT PASSWORD ────────────────────────────────────────
 function toggleForgot(show){
   document.getElementById('forgotPanel').classList.toggle('on', show);
