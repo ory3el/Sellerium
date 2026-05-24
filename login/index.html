@@ -180,8 +180,8 @@
         <button class="soc-btn" onclick="socialLogin('Google')">
           <span class="soc-ico">🌐</span> Google
         </button>
-        <button class="soc-btn" onclick="socialLogin('Apple')">
-          <span class="soc-ico">🍎</span> Apple
+        <button class="soc-btn" onclick="socialLogin('Facebook')">
+          <span class="soc-ico">📘</span> Facebook
         </button>
       </div>
 
@@ -201,18 +201,12 @@
         </div>
       </div>
 
-      <div class="fgrp">
+      <div class="frow"> style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="fgrp">
         <label for="regEmail">E-mail</label>
         <input class="finput" id="regEmail" type="email" placeholder="seu@email.com" oninput="clearFieldErr(this)">
         <div class="field-err" id="regEmailErr">E-mail inválido</div>
       </div>
-
-      <div class="frow" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div class="fgrp">
-          <label for="regCpf">CPF</label>
-          <input class="finput" id="regCpf" type="text" placeholder="000.000.000-00" oninput="maskCPF(this)" maxlength="14">
-          <div class="field-hint">Necessário para nota fiscal</div>
-        </div>
         <div class="fgrp">
           <label for="regPhone">Celular</label>
           <input class="finput" id="regPhone" type="text" placeholder="(00) 00000-0000" oninput="maskPhone(this)" maxlength="15">
