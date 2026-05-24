@@ -117,17 +117,24 @@ function doRegister(){
   const email = document.getElementById('regEmail');
   const phone = document.getElementById('regPhone');
   const pwd   = document.getElementById('regPwd');
-  const terms = document.getElementById('acceptTerms');
+  
+  const termsAge = document.getElementById('acceptAge');
+  const termsDoc = document.getElementById('acceptTerms');
 
   if(!name.value.trim()){ showFieldErr(name,'regNameErr'); valid = false; }
   if(!validateEmail(email.value.trim())){ showFieldErr(email,'regEmailErr'); valid = false; }
+  
   const phoneValue = phone.value.replace(/\D/g, '');
-if(phoneValue.length < 11){ 
-    showFieldErr(phone, 'regPhoneErr'); 
-    valid = false; 
-}
+  if(phoneValue.length < 11){ 
+      showFieldErr(phone, 'regPhoneErr'); 
+      valid = false; 
+  }
+  
   if(pwd.value.length < 8){ showFieldErr(pwd,'regPwdErr'); valid = false; }
-  if(!terms.checked){ toast('Aceite os termos para continuar','err'); valid = false; }
+  
+  if(termsAge && !termsAge.checked){ toast('Você precisa ter 18 anos ou mais','err'); valid = false; return; }
+  if(termsDoc && !termsDoc.checked){ toast('Aceite os termos para continuar','err'); valid = false; return; }
+  
   if(!valid) return;
 
   simulateLoad('btnReg', () => {
@@ -160,26 +167,14 @@ window.addEventListener('load', () => {
       callback: handleCredentialResponse
     });
   }
-
-  // Função interna para disparar o pop-up do Google
-  const dispararGoogle = (e) => {
-    e.preventDefault(); 
-    google.accounts.id.prompt((notification) => {
-      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-        google.accounts.id.requestCode();
-      }
-    });
-  };
-
-  // Vincula o evento tanto no botão da tela de login quanto no da tela de cadastro
-  const btnLogin = document.getElementById('btn-google-login');
-  const btnReg = document.getElementById('btn-google-reg');
-  
-  if (btnLogin) btnLogin.addEventListener('click', dispararGoogle);
-  if (btnReg) btnReg.addEventListener('click', dispararGoogle);
 });
 
-  // Exemplo de envio para o seu servidor (Descomente quando o back-end estiver pronto)
+function handleCredentialResponse(response) {
+  const tokenJWT = response.credential;
+  console.log("Token do Google recebido com sucesso:", tokenJWT);
+  toast('Login com Google efetuado! Autenticando...');
+
+  // Envie o 'tokenJWT' para o seu back-end aqui quando estiver pronto:
   /*
   fetch('/api/auth/google', {
       method: 'POST',
@@ -193,11 +188,13 @@ window.addEventListener('load', () => {
   .catch(err => console.error("Erro no envio do token:", err));
   */
 }
+
 // ── TOAST ──────────────────────────────────────────────────
 function toast(msg, type='ok'){
   const t  = document.getElementById('toast1');
   const ic = document.getElementById('toastIco');
   const tx = document.getElementById('toastMsg');
+  if(!t || !ic || !tx) return;
   tx.textContent = msg;
   ic.className = 'toast-ico ' + type;
   ic.textContent = type === 'ok' ? '✓' : '!';
