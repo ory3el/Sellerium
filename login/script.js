@@ -159,14 +159,25 @@ window.addEventListener('load', () => {
       client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
       callback: handleCredentialResponse
     });
-  } else {
-    console.error("A biblioteca do Google não foi carregada no HTML.");
   }
-});
 
-function handleCredentialResponse(response) {
-  const tokenJWT = response.credential;
-  console.log("Token do Google recebido com sucesso:", tokenJWT);
+  // Função interna para disparar o pop-up do Google
+  const dispararGoogle = (e) => {
+    e.preventDefault(); 
+    google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        google.accounts.id.requestCode();
+      }
+    });
+  };
+
+  // Vincula o evento tanto no botão da tela de login quanto no da tela de cadastro
+  const btnLogin = document.getElementById('btn-google-login');
+  const btnReg = document.getElementById('btn-google-reg');
+  
+  if (btnLogin) btnLogin.addEventListener('click', dispararGoogle);
+  if (btnReg) btnReg.addEventListener('click', dispararGoogle);
+});
 
   // Exemplo de envio para o seu servidor (Descomente quando o back-end estiver pronto)
   /*
