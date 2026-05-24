@@ -140,28 +140,27 @@ if(phoneValue.length < 11){
 function socialLogin(prov){
   toast(`Conectando com ${prov}...`);
   
+  if (prov === 'Google') {
+    google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        google.accounts.id.requestCode();
+      }
+    });
+  }
+  
   if (prov === 'Facebook') {
      // Lógica do Facebook...
   }
 }
 
 window.addEventListener('load', () => {
-  google.accounts.id.initialize({
-    client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
-    callback: handleCredentialResponse
-  });
-
-  const googleBtn = document.getElementById('btn-google-custom');
-  if (googleBtn) {
-    googleBtn.addEventListener('click', (e) => {
-      e.preventDefault(); 
-      
-      google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-          google.accounts.id.requestCode();
-        }
-      });
+  if (typeof google !== 'undefined' && google.accounts) {
+    google.accounts.id.initialize({
+      client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
+      callback: handleCredentialResponse
     });
+  } else {
+    console.error("A biblioteca do Google não foi carregada no HTML.");
   }
 });
 
@@ -169,16 +168,20 @@ function handleCredentialResponse(response) {
   const tokenJWT = response.credential;
   console.log("Token do Google recebido com sucesso:", tokenJWT);
 
+  // Exemplo de envio para o seu servidor (Descomente quando o back-end estiver pronto)
+  /*
   fetch('/api/auth/google', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: tokenJWT })
   })
   .then(res => res.json())
-  .then(data => { ... })
+  .then(data => {
+      if(data.success) window.location.href = '../';
+  })
+  .catch(err => console.error("Erro no envio do token:", err));
   */
 }
-
 // ── TOAST ──────────────────────────────────────────────────
 function toast(msg, type='ok'){
   const t  = document.getElementById('toast1');
