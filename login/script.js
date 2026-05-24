@@ -6,6 +6,18 @@ function showTab(tab){
   document.getElementById('formLogin').classList.toggle('hidden', !isLogin);
   document.getElementById('formReg').classList.toggle('hidden', isLogin);
   if(isLogin) toggleForgot(false);
+
+  if (typeof google !== 'undefined' && google.accounts) {
+    google.accounts.id.renderButton(
+      document.querySelector('#formLogin .g_id_signin') || document.querySelector('#formReg .g_id_signin'),
+      { type: "standard", size: "large", opacity: 0 }
+    );
+    
+    google.accounts.id.initialize({
+      client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+  }
 }
 
 // ── FORGOT PASSWORD ────────────────────────────────────────
