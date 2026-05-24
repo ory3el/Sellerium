@@ -8,29 +8,6 @@ function showTab(tab){
   if(isLogin) toggleForgot(false);
 }
 
-// ── GOOGLE LOGIN ────────────────────────────────────────
-window.onload = function () {
-  google.accounts.id.initialize({
-    client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
-    callback: handleCredentialResponse
-  });
-
-  const botaoCustomizado = document.getElementById('meu-botao-google');
-
-  botaoCustomizado.addEventListener('click', () => {
-    google.accounts.id.prompt((notification) => {
-      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-        google.accounts.id.requestCode();
-      }
-    });
-  });
-};
-
-function handleCredentialResponse(response) {
-   const tokenJWT = response.credential;
-   console.log("Token recebido via botão customizado:", tokenJWT);
-}
-
 // ── FORGOT PASSWORD ────────────────────────────────────────
 function toggleForgot(show){
   document.getElementById('forgotPanel').classList.toggle('on', show);
@@ -162,6 +139,44 @@ if(phoneValue.length < 11){
 // ── SOCIAL LOGIN ───────────────────────────────────────────
 function socialLogin(prov){
   toast(`Conectando com ${prov}...`);
+  
+  if (prov === 'Facebook') {
+     // Lógica do Facebook...
+  }
+}
+
+window.addEventListener('load', () => {
+  google.accounts.id.initialize({
+    client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
+    callback: handleCredentialResponse
+  });
+
+  const googleBtn = document.getElementById('btn-google-custom');
+  if (googleBtn) {
+    googleBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      
+      google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          google.accounts.id.requestCode();
+        }
+      });
+    });
+  }
+});
+
+function handleCredentialResponse(response) {
+  const tokenJWT = response.credential;
+  console.log("Token do Google recebido com sucesso:", tokenJWT);
+
+  fetch('/api/auth/google', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: tokenJWT })
+  })
+  .then(res => res.json())
+  .then(data => { ... })
+  */
 }
 
 // ── TOAST ──────────────────────────────────────────────────
