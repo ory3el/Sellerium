@@ -45,6 +45,13 @@ function clearFieldErr(inp){
 function validateEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
 // ── MASKS ──────────────────────────────────────────────────
+function maskCPF(inp){
+  let v = inp.value.replace(/\D/g,'').slice(0,11);
+  if(v.length > 9) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9);
+  else if(v.length > 6) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);
+  else if(v.length > 3) v = v.slice(0,3)+'.'+v.slice(3);
+  inp.value = v;
+}
 function maskPhone(inp){
   let v = inp.value.replace(/\D/g,'').slice(0,11);
   if(v.length > 6) v = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
