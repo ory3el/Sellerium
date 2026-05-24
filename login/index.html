@@ -125,27 +125,27 @@
           <p>Não tem conta? <a href="#" onclick="showTab('register');return false">Cadastre-se grátis</a></p>
         </div>
 
-        <div class="social-row">
-          <button class="soc-btn" onclick="socialLogin('Google')">
+<div id="g_id_onload"
+     data-client_id="713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
 
-          <div id="g_id_onload"
-               data-client_id="713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com"
-               data-context="signin"
-               data-ux_mode="popup"
-              data-callback="handleCredentialResponse"
-              data-auto_prompt="false">
-          </div>
-            
-            <span class="soc-ico">
-              <img src="../images/google_t.png" style="width: 30px; height: auto; display: block;" alt="Google"/>
-            </span> Google
-          </button>
-          <button class="soc-btn" onclick="socialLogin('Facebook')">
-            <span class="soc-ico">
-              <img src="../images/facebook_t.png" style="width: 30px; height: auto; display: block;" alt="Facebook"/>
-            </span> Facebook
-          </button>
-        </div>
+<div class="social-row">
+  <button class="soc-btn" id="btn-google-custom" onclick="socialLogin('Google')">
+    <span class="soc-ico">
+      <img src="../images/google_t.png" style="width: 30px; height: auto; display: block;" alt="Google"/>
+    </span> Google
+  </button>
+  
+  <button class="soc-btn" onclick="socialLogin('Facebook')">
+    <span class="soc-ico">
+      <img src="../images/facebook_t.png" style="width: 30px; height: auto; display: block;" alt="Facebook"/>
+    </span> Facebook
+  </button>
+</div>
 
         <div class="divider">ou entre com e-mail</div>
 
