@@ -75,6 +75,27 @@ window.addEventListener('load', () => {
   inicializarEConfigurarGoogle();
 });
 
+// Recebe o retorno de sucesso do Google com o Token JWT do usuário autenticado
+function handleCredentialResponse(response) {
+  const tokenJWT = response.credential;
+  console.log("Token do Google recebido com sucesso:", tokenJWT);
+  toast('Login com Google efetuado! Autenticando...');
+
+  // Envie o 'tokenJWT' para o seu back-end aqui quando estiver pronto:
+  /*
+  fetch('/api/auth/google', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: tokenJWT })
+  })
+  .then(res => res.json())
+  .then(data => {
+      if(data.success) window.location.href = '../';
+  })
+  .catch(err => console.error("Erro no envio do token:", err));
+  */
+}
+
 // ── FORGOT PASSWORD ────────────────────────────────────────
 function toggleForgot(show){
   document.getElementById('forgotPanel').classList.toggle('on', show);
@@ -208,11 +229,6 @@ function doRegister(){
     toast('Conta criada com sucesso! Bem-vindo ao Sellerium 🚀');
     setTimeout(() => window.location.href = '../', 1400);
   });
-}
-
-// ─────────────────────────────────────────────
-function onGoogleClick() {
-  toast('Conectando com Google...');
 }
 
 // ── SOCIAL LOGIN ───────────────────────────────────────────
