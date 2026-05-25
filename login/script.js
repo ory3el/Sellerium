@@ -235,8 +235,50 @@ function doRegister(){
 function socialLogin(prov){
   toast(`Conectando com ${prov}...`);
   
+// ── INICIALIZAÇÃO ASSÍNCRONA DO SDK DO FACEBOOK ─────────────
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : 'SEU_APP_ID_AQUI', // ⚠️ Substitua pelo App ID gerado no painel Meta for Developers
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v18.0'
+  });
+};
+
+// ── PROCESSAMENTO DO CLIQUE SOCIAL ───────────────────────────
+function socialLogin(prov){
   if (prov === 'Facebook') {
-     // Lógica do Facebook no futuro...
+    // Valida se o script do Facebook já terminou de baixar da Meta
+    if (typeof FB === 'undefined') {
+      toast('O serviço do Facebook está carregando. Aguarde um instante.', 'err');
+      return;
+    }
+    
+    toast('Conectando com Facebook...');
+    
+    // Dispara o pop-up de login oficial
+    FB.login(function(response) {
+      if (response.authResponse) {
+        // Token gerado com sucesso pelo Facebook
+        const accessToken = response.authResponse.accessToken;
+        console.log("Token do Facebook recebido com sucesso:", accessToken);
+        
+        toast('Login com Facebook efetuado! Autenticando...');
+        
+        // Redireciona o usuário (Fluxo idêntico ao do Google)
+        setTimeout(() => window.location.href = '../', 1200);
+      } else {
+        toast('Autenticação cancelada ou recusada.', 'err');
+      }
+    }, { scope: 'public_profile,email' }); // Pede permissão ao e-mail e perfil público do usuário
   }
 }
 
