@@ -235,7 +235,6 @@ function doRegister(){
 function socialLogin(prov){
   toast(`Conectando com ${prov}...`);
 
-    if (prov === 'Facebook') {
 // ── INICIALIZAÇÃO ASSÍNCRONA DO SDK DO FACEBOOK ─────────────
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
