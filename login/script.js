@@ -281,7 +281,8 @@ function socialLogin(prov){
     }, { scope: 'public_profile,email' }); // Pede permissão ao e-mail e perfil público do usuário
   }
 }
-
+}
+  
 // ── TOAST ──────────────────────────────────────────────────
 function toast(msg, type='ok'){
   const t  = document.getElementById('toast1');
