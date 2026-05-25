@@ -7,18 +7,53 @@ function showTab(tab){
   document.getElementById('formReg').classList.toggle('hidden', isLogin);
   if(isLogin) toggleForgot(false);
 
+  // Força o Google a renderizar novamente no contêiner correto quando mudar de aba
+  renderizarBotoesGoogle();
+}
+
+// ── CONFIGURAÇÃO COMPLETA DO GOOGLE ────────────────────────
+function renderizarBotoesGoogle() {
   if (typeof google !== 'undefined' && google.accounts) {
-    google.accounts.id.renderButton(
-      document.querySelector('#formLogin .g_id_signin') || document.querySelector('#formReg .g_id_signin'),
-      { type: "standard", size: "large", opacity: 0 }
-    );
-    
+    // 1. Inicializa as credenciais (Apenas uma vez na página)
     google.accounts.id.initialize({
       client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
       callback: handleCredentialResponse
     });
+
+    // Opções de estilo para combinar com o design elegante da Sellerium
+    const opcoesEstilo = {
+      type: "standard",
+      size: "large",
+      theme: "outline",       // Pode ser "outline", "filled_blue" ou "filled_black"
+      text: "sign_in_with",   // Texto "Entrar com o Google"
+      shape: "rectangular",   // Formato combinando com seus inputs
+      logo_alignment: "left",
+      width: "210"            // Largura ideal para ficar lado a lado com o Facebook
+    };
+
+    // 2. Renderiza no botão da aba de Login se ele estiver visível na tela
+    const elLogin = document.getElementById('google-btn-login');
+    if (elLogin && elLogin.offsetWidth > 0) {
+      google.accounts.id.renderButton(elLogin, opcoesEstilo);
+    }
+
+    // 3. Renderiza no botão da aba de Cadastro se ele estiver visível na tela
+    const elReg = document.getElementById('google-btn-reg');
+    if (elReg && elReg.offsetWidth > 0) {
+      google.accounts.id.renderButton(elReg, opcoesEstilo);
+    }
   }
 }
+
+// Inicializa tudo quando a página carrega pela primeira vez
+window.addEventListener('load', () => {
+  renderizarBotoesGoogle();
+});
+
+// Garante que se o usuário mudar de aba do navegador e voltar, os botões continuem ativos
+window.addEventListener('focus', () => {
+  renderizarBotoesGoogle();
+});
 
 // ── FORGOT PASSWORD ────────────────────────────────────────
 function toggleForgot(show){
