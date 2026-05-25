@@ -1,3 +1,7 @@
+// Variáveis globais de controle para garantir que cada botão seja desenhado APENAS UMA VEZ
+let googleLoginRendered = false;
+let googleRegRendered = false;
+
 // ── TAB SWITCH ─────────────────────────────────────────────
 function showTab(tab){
   const isLogin = tab === 'login';
@@ -7,16 +11,20 @@ function showTab(tab){
   document.getElementById('formReg').classList.toggle('hidden', isLogin);
   if(isLogin) toggleForgot(false);
 
-  // Força o Google a renderizar novamente no contêiner correto quando mudar de aba
-  renderizarBotoesGoogle();
+  // Sempre que mudar de aba, tentamos renderizar o botão da nova aba caso ele ainda não exista
+  verificarERenderizarBotoes();
 }
 
-// ── CONFIGURAÇÃO COMPLETA DO GOOGLE ────────────────────────
-function renderizarBotoesGoogle() {
+// Função especial executada automaticamente pelo script do Google assim que ele termina de baixar
+window.onGoogleLibraryLoad = function () {
+  inicializarEConfigurarGoogle();
+};
+
+// ── CONFIGURAÇÃO CENTRALIZADA E SEGURA DO GOOGLE ────────────
+function inicializarEConfigurarGoogle() {
   if (typeof google !== 'undefined' && google.accounts) {
     
-    // 1. Inicializa as configurações fundamentais do Google (Substitui o g_id_onload)
-    // Esse comando DEVE rodar sempre para preparar o terreno
+    // Inicializa as credenciais uma única vez de forma limpa e centralizada
     google.accounts.id.initialize({
       client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
       callback: handleCredentialResponse,
@@ -24,42 +32,47 @@ function renderizarBotoesGoogle() {
       context: "signin"
     });
 
-    // Configurações visuais oficiais do botão
-    const opcoesEstilo = {
-      type: "standard",
-      size: "large",
-      theme: "outline", 
-      text: "signin", 
-      shape: "rectangular",
-      logo_alignment: "left",
-      width: "210" // Encaixe perfeito para ficar lado a lado com o Facebook
-    };
-
-    // 2. Tenta renderizar o botão de Login (Apenas se a aba de login estiver visível)
-    const elLogin = document.getElementById('google-btn-login');
-    const formLoginEscondido = document.getElementById('formLogin').classList.contains('hidden');
-    
-    if (elLogin && !formLoginEscondido) {
-      google.accounts.id.renderButton(elLogin, opcoesEstilo);
-    }
-
-    // 3. Tenta renderizar o botão de Cadastro (Apenas se a aba de cadastro estiver visível)
-    const elReg = document.getElementById('google-btn-reg');
-    const formRegEscondido = document.getElementById('formReg').classList.contains('hidden');
-    
-    if (elReg && !formRegEscondido) {
-      google.accounts.id.renderButton(elReg, opcoesEstilo);
-    }
+    // Dispara a checagem de renderização dos botões
+    verificarERenderizarBotoes();
   }
 }
-// Inicializa tudo quando a página carrega pela primeira vez
-window.addEventListener('load', () => {
-  renderizarBotoesGoogle();
-});
 
-// Garante que se o usuário mudar de aba do navegador e voltar, os botões continuem ativos
-window.addEventListener('focus', () => {
-  renderizarBotoesGoogle();
+function verificarERenderizarBotoes() {
+  if (typeof google === 'undefined' || !google.accounts) return;
+
+  // Configurações visuais padronizadas do botão oficial
+  const opcoesEstilo = {
+    type: "standard",
+    size: "large",
+    theme: "outline", 
+    text: "signin", 
+    shape: "rectangular",
+    logo_alignment: "left",
+    width: "210" // Encaixe perfeito ao lado do botão do Facebook
+  };
+
+  // 1. Renderiza o botão de Login (Apenas se o formulário de login estiver visível E o botão nunca tiver sido criado)
+  const elLogin = document.getElementById('google-btn-login');
+  const formLoginEscondido = document.getElementById('formLogin').classList.contains('hidden');
+  
+  if (elLogin && !formLoginEscondido && !googleLoginRendered) {
+    google.accounts.id.renderButton(elLogin, opcoesEstilo);
+    googleLoginRendered = true; // Trava o botão para nunca mais ser re-renderizado por cima
+  }
+
+  // 2. Renderiza o botão de Cadastro (Apenas se o formulário de cadastro estiver visível E o botão nunca tiver sido criado)
+  const elReg = document.getElementById('google-btn-reg');
+  const formRegEscondido = document.getElementById('formReg').classList.contains('hidden');
+  
+  if (elReg && !formRegEscondido && !googleRegRendered) {
+    google.accounts.id.renderButton(elReg, opcoesEstilo);
+    googleRegRendered = true; // Trava o botão para nunca mais ser re-renderizado por cima
+  }
+}
+
+// Inicializador de segurança para o carregamento padrão da página
+window.addEventListener('load', () => {
+  inicializarEConfigurarGoogle();
 });
 
 // ── FORGOT PASSWORD ────────────────────────────────────────
