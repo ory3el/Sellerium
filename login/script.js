@@ -14,37 +14,44 @@ function showTab(tab){
 // ── CONFIGURAÇÃO COMPLETA DO GOOGLE ────────────────────────
 function renderizarBotoesGoogle() {
   if (typeof google !== 'undefined' && google.accounts) {
-    // 1. Inicializa as credenciais (Apenas uma vez na página)
+    
+    // 1. Inicializa as configurações fundamentais do Google (Substitui o g_id_onload)
+    // Esse comando DEVE rodar sempre para preparar o terreno
     google.accounts.id.initialize({
       client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
-      callback: handleCredentialResponse
+      callback: handleCredentialResponse,
+      auto_prompt: false,
+      context: "signin"
     });
 
-    // Opções de estilo para combinar com o design elegante da Sellerium
+    // Configurações visuais oficiais do botão
     const opcoesEstilo = {
       type: "standard",
       size: "large",
-      theme: "outline",       // Pode ser "outline", "filled_blue" ou "filled_black"
-      text: "sign_in_with",   // Texto "Entrar com o Google"
-      shape: "rectangular",   // Formato combinando com seus inputs
+      theme: "outline", 
+      text: "signin", 
+      shape: "rectangular",
       logo_alignment: "left",
-      width: "210"            // Largura ideal para ficar lado a lado com o Facebook
+      width: "210" // Encaixe perfeito para ficar lado a lado com o Facebook
     };
 
-    // 2. Renderiza no botão da aba de Login se ele estiver visível na tela
+    // 2. Tenta renderizar o botão de Login (Apenas se a aba de login estiver visível)
     const elLogin = document.getElementById('google-btn-login');
-    if (elLogin && elLogin.offsetWidth > 0) {
+    const formLoginEscondido = document.getElementById('formLogin').classList.contains('hidden');
+    
+    if (elLogin && !formLoginEscondido) {
       google.accounts.id.renderButton(elLogin, opcoesEstilo);
     }
 
-    // 3. Renderiza no botão da aba de Cadastro se ele estiver visível na tela
+    // 3. Tenta renderizar o botão de Cadastro (Apenas se a aba de cadastro estiver visível)
     const elReg = document.getElementById('google-btn-reg');
-    if (elReg && elReg.offsetWidth > 0) {
+    const formRegEscondido = document.getElementById('formReg').classList.contains('hidden');
+    
+    if (elReg && !formRegEscondido) {
       google.accounts.id.renderButton(elReg, opcoesEstilo);
     }
   }
 }
-
 // Inicializa tudo quando a página carrega pela primeira vez
 window.addEventListener('load', () => {
   renderizarBotoesGoogle();
