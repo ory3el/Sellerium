@@ -367,3 +367,53 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f0f6ff;color:#0f1a2e
   body{padding:0;align-items:stretch}
   .auth-shell{border-radius:0;min-height:100vh;box-shadow:none}
 }
+
+/* ── BOTÃO DO FACEBOOK ESPELHADO COM O GOOGLE ──────────────── */
+.fb-btn-google-style {
+  flex: 1;
+  height: 40px; /* Altura exata do botão Large do Google */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #dadce0; /* Cor da borda oficial do Google Outline */
+  border-radius: 4px; /* Formato rectangular padrão da API */
+  color: #1f1f1f;
+  font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 12px;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito Hover idêntico ao do Google */
+.fb-btn-google-style:hover {
+  background-color: #f8f9fa;
+  border-color: #d2e3fc;
+}
+
+.fb-btn-google-style:active {
+  background-color: #f1f3f4;
+}
+
+/* Container do ícone do Facebook proporcional ao do Google */
+.fb-btn-google-style .fb-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.fb-btn-google-style .fb-icon-wrap img {
+  width: 20px; /* Tamanho exato do escudo de marca do iframe */
+  height: 20px;
+  display: block;
+}
+
+.fb-btn-google-style .fb-btn-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
