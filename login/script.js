@@ -192,9 +192,12 @@ function toggleForgot(show){
   document.getElementById('forgotPanel').classList.toggle('on', show);
   document.getElementById('loginMain').style.display = show ? 'none' : 'block';
 }
+
 function sendForgot(){
   const v = document.getElementById('forgotEmail').value.trim();
   if(!v || !v.includes('@')){ toast('Digite um e-mail válido','err'); return; }
+  
+  // Utiliza a função de load simulado para o feedback visual de envio
   simulateLoad('btnLogin', () => {
     toast('Link enviado para ' + v + ' ✉️');
     toggleForgot(false);
@@ -263,68 +266,12 @@ function checkPwd(v){
   lbl.className = 'pwd-label ' + (score ? cls[score-1] : 's1');
 }
 
-// ── SIMULATE LOADING ───────────────────────────────────────
+// ── SIMULATE LOADING (Mantido para recuperar senha) ────────
 function simulateLoad(btnId, cb, delay=1400){
   const btn = document.getElementById(btnId);
-  btn.classList.add('loading');
-  setTimeout(() => { btn.classList.remove('loading'); cb(); }, delay);
+  if (btn) btn.classList.add('loading');
+  setTimeout(() => { if(btn) btn.classList.remove('loading'); cb(); }, delay);
 }
-
-// ── LOGIN ──────────────────────────────────────────────────
-function doLogin(){
-  let valid = true;
-  const email = document.getElementById('loginEmail');
-  const pwd   = document.getElementById('loginPwd');
-  if(!validateEmail(email.value.trim())){
-    showFieldErr(email,'loginEmailErr'); valid = false;
-  }
-  if(!pwd.value){
-    showFieldErr(pwd,'loginPwdErr'); valid = false;
-  }
-  if(!valid){ toast('Preencha os campos obrigatórios','err'); return; }
-
-  simulateLoad('btnLogin', () => {
-    toast('Login realizado! Redirecionando... 🎉');
-    setTimeout(() => window.location.href = '../', 1200);
-  });
-}
-
-// ── REGISTER ───────────────────────────────────────────────
-function doRegister(){
-  let valid = true;
-  const name  = document.getElementById('regName');
-  const email = document.getElementById('regEmail');
-  const phone = document.getElementById('regPhone');
-  const pwd   = document.getElementById('regPwd');
-  
-  const termsAge = document.getElementById('acceptAge');
-  const termsDoc = document.getElementById('acceptTerms');
-
-  if(!name.value.trim()){ showFieldErr(name,'regNameErr'); valid = false; }
-  if(!validateEmail(email.value.trim())){ showFieldErr(email,'regEmailErr'); valid = false; }
-  
-  const phoneValue = phone.value.replace(/\D/g, '');
-  if(phoneValue.length < 11){ 
-      showFieldErr(phone, 'regPhoneErr'); 
-      valid = false; 
-  }
-  
-  if(pwd.value.length < 8){ showFieldErr(pwd,'regPwdErr'); valid = false; }
-  
-  if(termsAge && !termsAge.checked){ toast('Você precisa ter 18 anos ou mais','err'); valid = false; return; }
-  if(termsDoc && !termsDoc.checked){ toast('Aceite os termos para continuar','err'); valid = false; return; }
-  
-  if(!valid) return;
-
-  simulateLoad('btnReg', () => {
-    toast('Conta criada com sucesso! Bem-vindo ao Sellerium 🚀');
-    setTimeout(() => window.location.href = '../', 1400);
-  });
-}
-
-// ── SOCIAL LOGIN ───────────────────────────────────────────
-function socialLogin(prov){
-  toast(`Conectando com ${prov}...`);
 
 // ── INICIALIZAÇÃO ASSÍNCRONA DO SDK DO FACEBOOK ─────────────
 (function(d, s, id) {
@@ -336,18 +283,19 @@ function socialLogin(prov){
 }(document, 'script', 'facebook-jssdk'));
 
 window.fbAsyncInit = function() {
-  FB.init({
-    appId      : 'SEU_APP_ID_AQUI', // ⚠️ Substitua pelo App ID gerado no painel Meta for Developers
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v18.0'
-  });
+  if (typeof FB !== 'undefined') {
+    FB.init({
+      appId      : 'SEU_APP_ID_AQUI', // ⚠️ OBRIGATÓRIO SUBSTITUIR
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v18.0'
+    });
+  }
 };
 
-// ── PROCESSAMENTO DO CLIQUE SOCIAL ───────────────────────────
+// ── SOCIAL LOGIN ───────────────────────────────────────────
 function socialLogin(prov){
   if (prov === 'Facebook') {
-    // Valida se o script do Facebook já terminou de baixar da Meta
     if (typeof FB === 'undefined') {
       toast('O serviço do Facebook está carregando. Aguarde um instante.', 'err');
       return;
@@ -355,23 +303,18 @@ function socialLogin(prov){
     
     toast('Conectando com Facebook...');
     
-    // Dispara o pop-up de login oficial
     FB.login(function(response) {
       if (response.authResponse) {
-        // Token gerado com sucesso pelo Facebook
         const accessToken = response.authResponse.accessToken;
         console.log("Token do Facebook recebido com sucesso:", accessToken);
         
-        toast('Login com Facebook efetuado! Autenticando...');
-        
-        // Redireciona o usuário (Fluxo idêntico ao do Google)
-        setTimeout(() => window.location.href = '../', 1200);
+        toast('Login com Facebook efetuado! Redirecionando... 🎉');
+        setTimeout(() => window.location.href = '../painel.html', 1200);
       } else {
         toast('Autenticação cancelada ou recusada.', 'err');
       }
-    }, { scope: 'public_profile,email' }); // Pede permissão ao e-mail e perfil público do usuário
+    }, { scope: 'public_profile,email' });
   }
-}
 }
   
 // ── TOAST ──────────────────────────────────────────────────
