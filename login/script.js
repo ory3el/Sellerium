@@ -1,7 +1,7 @@
 // ── 1. INICIALIZAR O SUPABASE (Cole no topo do arquivo) ──────────────────
 // Substitua pelas chaves que aparecem em Project Settings > API no painel do Supabase
-const SUPABASE_URL = "https://SEU_PROJETO.supabase.co";
-const SUPABASE_ANON_KEY = "SUA_CHAVE_ANON_PUBLICA_AQUI";
+const SUPABASE_URL = "https://putdougjaadksnfyfbgc.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_UJYrU4E9UtTywzq3ghGLsQ_fRHE9nRR";
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
