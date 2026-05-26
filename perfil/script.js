@@ -30,7 +30,7 @@ function setTheme(btn, theme){ document.querySelectorAll('.theme-btn').forEach(b
 function setAllNotifs(){ document.querySelectorAll('.toggle-inp').forEach(t => t.checked = true); toast('Todas as notificações ativadas! 🔔'); }
 function filterOrders(btn, filter){ document.querySelectorAll('.btn-xs.blue, .btn-xs.gray').forEach(b => { if(b.closest('.card') && b.closest('.card').querySelector('.btn-xs')){ b.className = 'btn-xs gray'; } }); btn.className = 'btn-xs blue'; toast(`Filtro aplicado: ${btn.textContent}`,'info'); }
 function copyCoupon(code){ navigator.clipboard?.writeText(code); toast(`Cupom ${code} copiado! 📋`); }
-function doLogout(){ toast('Saindo da conta... 👋','info'); setTimeout(() => window.location.href = 'dropshop-auth.html', 1200); }
+function doLogout(){ toast('Saindo da conta... 👋','info'); setTimeout(() => window.location.href = '../', 1200); }
 
 // ── MASKS ──────────────────────────────────────────────────
 function maskCPF(inp){ let v=inp.value.replace(/\D/g,'').slice(0,11); if(v.length>9) v=v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9); else if(v.length>6) v=v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6); else if(v.length>3) v=v.slice(0,3)+'.'+v.slice(3); inp.value=v; }
@@ -61,7 +61,7 @@ function toast(msg, type='ok'){
 
     // 4. Barreira de Segurança: Se não tiver logado, manda de volta pra tela de login
     if (!session || error) {
-      window.location.href = '../index.html'; // Ajuste o caminho se necessário
+      window.location.href = '../login'; // Ajuste o caminho se necessário
       return;
     }
 
@@ -82,5 +82,5 @@ function toast(msg, type='ok'){
   // 7. Função bônus: Botão de Sair (Deslogar)
   async function sairDaConta() {
     await supabaseClient.auth.signOut();
-    window.location.href = '../index.html'; // Volta pra página de login
+    window.location.href = '../login'; // Volta pra página de login
   }
