@@ -82,8 +82,8 @@ window.addEventListener('load', () => {
 async function handleCredentialResponse(response) {
   toast('Autenticando com o Google... 🔐');
   
-  // Envia o token do Google diretamente para o Supabase validar e criar/sincronizar a conta
-  const { data, error } = await supabase.auth.signInWithIdToken({
+  // CORRIGIDO: supabaseClient em vez de supabase
+  const { data, error } = await supabaseClient.auth.signInWithIdToken({
     provider: 'google',
     token: response.credential,
   });
@@ -111,11 +111,10 @@ async function doLogin(){
   }
   if(!valid){ toast('Preencha os campos obrigatórios','err'); return; }
 
-  const btn = document.getElementById('btnLogin');
+const btn = document.getElementById('btnLogin');
   btn.classList.add('loading');
 
-  // Faz a validação diretamente no banco de dados na nuvem
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
     email: email.value.trim(),
     password: pwd.value,
   });
@@ -156,8 +155,7 @@ async function doRegister(){
   const btn = document.getElementById('btnReg');
   btn.classList.add('loading');
 
-  // Envia os dados para criar o utilizador e guarda Nome e Telemóvel nos metadados
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabaseClient.auth.signUp({
     email: email.value.trim(),
     password: pwd.value,
     options: {
@@ -180,9 +178,9 @@ async function doRegister(){
 
 // ── VERIFICADOR DE SESSÃO ATIVA ─────────────────────────────
 async function verificarSessao() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await supabaseClient.auth.getSession();
   if (session && window.location.pathname.includes('index.html')) {
-    // Se o utilizador já tiver sessão e estiver na página de login, manda-o para dentro
+
     window.location.href = '../painel.html';
   }
 }
