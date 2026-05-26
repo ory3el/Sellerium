@@ -4,9 +4,9 @@ const SUPABASE_ANON_KEY = "sb_publishable_UJYrU4E9UtTywzq3ghGLsQ_fRHE9nRR";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Variáveis globais de controlo para garantir que os botões do Google não dupliquem
 let googleLoginRendered = false;
 let googleRegRendered = false;
+let googleInitialized = false;
 
 // ── TAB SWITCH ─────────────────────────────────────────────
 function showTab(tab){
@@ -17,11 +17,9 @@ function showTab(tab){
   document.getElementById('formReg').classList.toggle('hidden', isLogin);
   if(isLogin) toggleForgot(false);
 
-  // Tenta renderizar o botão da aba ativa se ainda não existir
   verificarERenderizarBotoes();
 }
 
-// Função executada automaticamente pelo script do Google assim que carrega
 window.onGoogleLibraryLoad = function () {
   inicializarEConfigurarGoogle();
 };
@@ -29,12 +27,16 @@ window.onGoogleLibraryLoad = function () {
 // ── CONFIGURAÇÃO SEGURA DO GOOGLE ───────────────────────────
 function inicializarEConfigurarGoogle() {
   if (typeof google !== 'undefined' && google.accounts) {
-    google.accounts.id.initialize({
-      client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
-      callback: handleCredentialResponse,
-      auto_prompt: false,
-      context: "signin"
-    });
+    
+    if (!googleInitialized) {
+      google.accounts.id.initialize({
+        client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
+        callback: handleCredentialResponse,
+        auto_prompt: false,
+        context: "signin"
+      });
+      googleInitialized = true;
+    }
 
     verificarERenderizarBotoes();
   }
@@ -75,14 +77,13 @@ function verificarERenderizarBotoes() {
 // Monitor de segurança ao carregar a página
 window.addEventListener('load', () => {
   inicializarEConfigurarGoogle();
-  verificarSessao(); // Função que verifica se o utilizador já iniciou sessão antes
+  verificarSessao();
 });
 
 // ── RETORNO DO GOOGLE COM SUPABASE ──────────────────────────
 async function handleCredentialResponse(response) {
   toast('Autenticando com o Google... 🔐');
   
-  // CORRIGIDO: supabaseClient em vez de supabase
   const { data, error } = await supabaseClient.auth.signInWithIdToken({
     provider: 'google',
     token: response.credential,
@@ -195,7 +196,6 @@ function sendForgot(){
   const v = document.getElementById('forgotEmail').value.trim();
   if(!v || !v.includes('@')){ toast('Digite um e-mail válido','err'); return; }
   
-  // Utiliza a função de load simulado para o feedback visual de envio
   simulateLoad('btnLogin', () => {
     toast('Link enviado para ' + v + ' ✉️');
     toggleForgot(false);
