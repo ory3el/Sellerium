@@ -1,8 +1,8 @@
-// ── 1. INICIALIZAR O SUPABASE (Cole no topo do arquivo) ──────────────────
+// ── 1. INICIALIZAR O SUPABASE ──────────────────
 const SUPABASE_URL = "https://putdougjaadksnfyfbgc.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_UJYrU4E9UtTywzq3ghGLsQ_fRHE9nRR";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); // <--- O ERRO ESTÁ AQUI
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Variáveis globais de controlo para garantir que os botões do Google não dupliquem
 let googleLoginRendered = false;
