@@ -49,9 +49,6 @@ function toast(msg, type='ok'){
   t._t=setTimeout(()=>t.classList.remove('on'),3000);
 }
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
   // 2. Inicializa o banco de dados (Use as suas chaves reais)
   const SUPABASE_URL = "https://putdougjaadksnfyfbgc.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_UJYrU4E9UtTywzq3ghGLsQ_fRHE9nRR";
