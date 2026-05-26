@@ -1,4 +1,11 @@
-// Variáveis globais de controle para garantir que cada botão seja desenhado APENAS UMA VEZ
+// ── 1. INICIALIZAR O SUPABASE (Cole no topo do arquivo) ──────────────────
+// Substitua pelas chaves que aparecem em Project Settings > API no painel do Supabase
+const SUPABASE_URL = "https://SEU_PROJETO.supabase.co";
+const SUPABASE_ANON_KEY = "SUA_CHAVE_ANON_PUBLICA_AQUI";
+
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Variáveis globais de controlo para garantir que os botões do Google não dupliquem
 let googleLoginRendered = false;
 let googleRegRendered = false;
 
@@ -11,20 +18,18 @@ function showTab(tab){
   document.getElementById('formReg').classList.toggle('hidden', isLogin);
   if(isLogin) toggleForgot(false);
 
-  // Sempre que mudar de aba, tentamos renderizar o botão da nova aba caso ele ainda não exista
+  // Tenta renderizar o botão da aba ativa se ainda não existir
   verificarERenderizarBotoes();
 }
 
-// Função especial executada automaticamente pelo script do Google assim que ele termina de baixar
+// Função executada automaticamente pelo script do Google assim que carrega
 window.onGoogleLibraryLoad = function () {
   inicializarEConfigurarGoogle();
 };
 
-// ── CONFIGURAÇÃO CENTRALIZADA E SEGURA DO GOOGLE ────────────
+// ── CONFIGURAÇÃO SEGURA DO GOOGLE ───────────────────────────
 function inicializarEConfigurarGoogle() {
   if (typeof google !== 'undefined' && google.accounts) {
-    
-    // Inicializa as credenciais uma única vez de forma limpa e centralizada
     google.accounts.id.initialize({
       client_id: "713059185567-mf4f30n7qrmgt474gjhon9ltc2s895rb.apps.googleusercontent.com",
       callback: handleCredentialResponse,
@@ -32,7 +37,6 @@ function inicializarEConfigurarGoogle() {
       context: "signin"
     });
 
-    // Dispara a checagem de renderização dos botões
     verificarERenderizarBotoes();
   }
 }
@@ -40,7 +44,6 @@ function inicializarEConfigurarGoogle() {
 function verificarERenderizarBotoes() {
   if (typeof google === 'undefined' || !google.accounts) return;
 
-  // Configurações visuais padronizadas do botão oficial
   const opcoesEstilo = {
     type: "standard",
     size: "large",
@@ -48,52 +51,141 @@ function verificarERenderizarBotoes() {
     text: "signin", 
     shape: "rectangular",
     logo_alignment: "left",
-    width: "210" // Encaixe perfeito ao lado do botão do Facebook
+    width: "210"
   };
 
-  // 1. Renderiza o botão de Login (Apenas se o formulário de login estiver visível E o botão nunca tiver sido criado)
+  // Botão de Login
   const elLogin = document.getElementById('google-btn-login');
   const formLoginEscondido = document.getElementById('formLogin').classList.contains('hidden');
   
   if (elLogin && !formLoginEscondido && !googleLoginRendered) {
     google.accounts.id.renderButton(elLogin, opcoesEstilo);
-    googleLoginRendered = true; // Trava o botão para nunca mais ser re-renderizado por cima
+    googleLoginRendered = true;
   }
 
-  // 2. Renderiza o botão de Cadastro (Apenas se o formulário de cadastro estiver visível E o botão nunca tiver sido criado)
+  // Botão de Cadastro
   const elReg = document.getElementById('google-btn-reg');
   const formRegEscondido = document.getElementById('formReg').classList.contains('hidden');
   
   if (elReg && !formRegEscondido && !googleRegRendered) {
     google.accounts.id.renderButton(elReg, opcoesEstilo);
-    googleRegRendered = true; // Trava o botão para nunca mais ser re-renderizado por cima
+    googleRegRendered = true;
   }
 }
 
-// Inicializador de segurança para o carregamento padrão da página
+// Monitor de segurança ao carregar a página
 window.addEventListener('load', () => {
   inicializarEConfigurarGoogle();
+  verificarSessao(); // Função que verifica se o utilizador já iniciou sessão antes
 });
 
-// Recebe o retorno de sucesso do Google com o Token JWT do usuário autenticado
-function handleCredentialResponse(response) {
-  const tokenJWT = response.credential;
-  console.log("Token do Google recebido com sucesso:", tokenJWT);
-  toast('Login com Google efetuado! Autenticando...');
+// ── RETORNO DO GOOGLE COM SUPABASE ──────────────────────────
+async function handleCredentialResponse(response) {
+  toast('Autenticando com o Google... 🔐');
+  
+  // Envia o token do Google diretamente para o Supabase validar e criar/sincronizar a conta
+  const { data, error } = await supabase.auth.signInWithIdToken({
+    provider: 'google',
+    token: response.credential,
+  });
 
-  // Envie o 'tokenJWT' para o seu back-end aqui quando estiver pronto:
-  /*
-  fetch('/api/auth/google', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: tokenJWT })
-  })
-  .then(res => res.json())
-  .then(data => {
-      if(data.success) window.location.href = '../';
-  })
-  .catch(err => console.error("Erro no envio do token:", err));
-  */
+  if (error) {
+    console.error(error);
+    toast('Erro ao autenticar com o Google.', 'err');
+  } else {
+    toast(`Bem-vindo, ${data.user.user_metadata.full_name || 'ao Sellerium'}! 🎉`);
+    setTimeout(() => window.location.href = '../painel.html', 1200);
+  }
+}
+
+// ── LOGIN COM E-MAIL E SENHA REAL (SUPABASE) ────────────────
+async function doLogin(){
+  let valid = true;
+  const email = document.getElementById('loginEmail');
+  const pwd   = document.getElementById('loginPwd');
+
+  if(!validateEmail(email.value.trim())){
+    showFieldErr(email,'loginEmailErr'); valid = false;
+  }
+  if(!pwd.value){
+    showFieldErr(pwd,'loginPwdErr'); valid = false;
+  }
+  if(!valid){ toast('Preencha os campos obrigatórios','err'); return; }
+
+  const btn = document.getElementById('btnLogin');
+  btn.classList.add('loading');
+
+  // Faz a validação diretamente no banco de dados na nuvem
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email.value.trim(),
+    password: pwd.value,
+  });
+
+  btn.classList.remove('loading');
+
+  if (error) {
+    toast('E-mail ou senha incorretos.', 'err');
+  } else {
+    toast('Login realizado com sucesso! 🎉');
+    setTimeout(() => window.location.href = '../painel.html', 1200);
+  }
+}
+
+// ── CADASTRO COM E-MAIL E SENHA REAL (SUPABASE) ─────────────
+async function doRegister(){
+  let valid = true;
+  const name  = document.getElementById('regName');
+  const email = document.getElementById('regEmail');
+  const phone = document.getElementById('regPhone');
+  const pwd   = document.getElementById('regPwd');
+  
+  const termsAge = document.getElementById('acceptAge');
+  const termsDoc = document.getElementById('acceptTerms');
+
+  if(!name.value.trim()){ showFieldErr(name,'regNameErr'); valid = false; }
+  if(!validateEmail(email.value.trim())){ showFieldErr(email,'regEmailErr'); valid = false; }
+  
+  const phoneValue = phone.value.replace(/\D/g, '');
+  if(phoneValue.length < 11){ showFieldErr(phone, 'regPhoneErr'); valid = false; }
+  if(pwd.value.length < 8){ showFieldErr(pwd,'regPwdErr'); valid = false; }
+  
+  if(termsAge && !termsAge.checked){ toast('Precisa de ter 18 anos ou mais','err'); return; }
+  if(termsDoc && !termsDoc.checked){ toast('Aceite os termos para continuar','err'); return; }
+  
+  if(!valid) return;
+
+  const btn = document.getElementById('btnReg');
+  btn.classList.add('loading');
+
+  // Envia os dados para criar o utilizador e guarda Nome e Telemóvel nos metadados
+  const { data, error } = await supabase.auth.signUp({
+    email: email.value.trim(),
+    password: pwd.value,
+    options: {
+      data: {
+        full_name: name.value.trim(),
+        phone: phoneValue
+      }
+    }
+  });
+
+  btn.classList.remove('loading');
+
+  if (error) {
+    console.error(error);
+    toast(error.message, 'err');
+  } else {
+    toast('Conta criada! Verifique o seu e-mail para confirmar o cadastro. 🚀');
+  }
+}
+
+// ── VERIFICADOR DE SESSÃO ATIVA ─────────────────────────────
+async function verificarSessao() {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session && window.location.pathname.includes('index.html')) {
+    // Se o utilizador já tiver sessão e estiver na página de login, manda-o para dentro
+    window.location.href = '../painel.html';
+  }
 }
 
 // ── FORGOT PASSWORD ────────────────────────────────────────
