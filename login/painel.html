@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sellerium | Painel do Cliente</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div style="padding: 40px; font-family: sans-serif;">
+    <h1>Olá, <span id="nomeDoUsuario">Carregando...</span>! 👋</h1>
+    <p>Bem-vindo à sua conta pessoal na Sellerium.</p>
+    <p>Seu e-mail cadastrado é: <strong id="emailDoUsuario">...</strong></p>
+    
+    <br><br>
+    <button onclick="deslogar()" style="padding: 10px 20px; cursor: pointer;">Sair da Conta</button>
+  </div>
+
+  <script>
+    // 1. Configure aqui as MESMAS chaves que você usou no seu script.js
+    const SUPABASE_URL = "https://SEU_PROJETO.supabase.co";
+    const SUPABASE_ANON_KEY = "SUA_CHAVE_ANON_PUBLICA_AQUI";
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // 2. Assim que a página abrir, verifica se o usuário tem permissão para estar aqui
+    window.addEventListener('DOMContentLoaded', async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      // Se NÃO existir uma sessão ativa, significa que o usuário não fez login. 
+      // Portanto, expulsamos ele de volta para a tela de login (index.html)
+      if (!session) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      // Se ele chegou aqui, está logado! Vamos pegar os dados dele
+      const usuario = session.user;
+      
+      // Se ele logou pelo Google ou preencheu o nome no cadastro, o nome estará em 'full_name'
+      const nomeCompleto = usuario.user_metadata.full_name || "Usuário";
+      const emailCadastrado = usuario.email;
+
+      // Injeta os dados nos textos da página
+      document.getElementById('nomeDoUsuario').textContent = nomeCompleto;
+      document.getElementById('emailDoUsuario').textContent = emailCadastrado;
+    });
+
+    // 3. Função para o botão "Sair da Conta"
+    async function deslogar() {
+      await supabase.auth.signOut(); // Avisa o Supabase para encerrar a sessão
+      window.location.href = 'index.html'; // Manda de volta para o login
+    }
+  </script>
+
+</body>
+</html>
