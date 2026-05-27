@@ -123,61 +123,6 @@
           <button class="btn-primary" onclick="saveProfile()">💾 Salvar alterações</button>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-title"><span class="ct-ico">🖼️</span> Foto de Perfil</div>
-        <div class="av-upload" onclick="toast('Selecionar imagem...','info')">
-          <div class="av-big">AC</div>
-          <div class="av-upload-txt">
-            <h4>Alterar foto de perfil</h4>
-            <p>JPG, PNG ou GIF · Máximo 5MB · Recomendado 400×400px</p>
-            <div class="av-btns">
-              <button class="btn-xs blue">📁 Escolher arquivo</button>
-              <button class="btn-xs gray" onclick="event.stopPropagation();toast('Foto removida')">🗑 Remover</button>
-            </div>
-          </div>
-        </div>
-        <div class="card-title"><span class="ct-ico">👤</span> Informações Pessoais</div>
-        <div class="fgrid">
-          <div class="fgrp"><label>Nome</label><input class="finput" value="" placeholder="Seu nome"></div>
-          <div class="fgrp"><label>Sobrenome</label><input class="finput" value="" placeholder="Sobrenome"></div>
-          <div class="fgrp"><label>E-mail</label><input class="finput" type="email" placeholder="seu@email.com" value=""></div>
-          <div class="fgrp"><label>Celular</label><input class="finput" value="" oninput="maskPhone(this)" placeholder="(00) 00000-0000" maxlength="15"></div>
-          <div class="fgrp"><label>CPF</label><input class="finput" value="" oninput="maskCPF(this)" placeholder="000.000.000-00" maxlength="14"></div>
-          <div class="fgrp"><label>Data de nascimento</label><input class="finput" type="date" placeholder="01/01/1999" value=""></div>
-          <div class="fgrp"><label>Gênero</label>
-            <select class="fselect">
-              <option>Selecione uma opção</option><option>Feminino</option><option>Masculino</option><option>Não binário</option><option>Prefiro não informar</option>
-            </select>
-          </div>
-          <div class="fgrp"><label>Idioma</label>
-            <select class="fselect"><option>Português (BR)</option><option>English</option><option>Español</option></select>
-          </div>
-          <div class="fgrp span2"><label>Bio / Sobre mim</label><textarea class="finput" rows="3" placeholder="Conte um pouco sobre você..."></textarea></div>
-        </div>
-        <div class="form-actions">
-          <button class="btn-primary" onclick="saveProfile()">💾 Salvar alterações</button>
-          <button class="btn-ghost" onclick="toast('Alterações descartadas')">✕ Cancelar</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="ct-ico">📊</span> Nível de Completude do Perfil</div>
-        <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
-          <div style="flex:1;background:#e2e8f0;border-radius:100px;height:8px;overflow:hidden">
-            <div style="width:33.33%;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:100px;transition:.6s"></div>
-          </div>
-          <span style="font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#2563eb;flex-shrink:0">33,33%</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#16a34a">✓ Nome e sobrenome</div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#16a34a">✓ E-mail verificado</div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#f97316">○ Celular confirmado</div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#f97316">○ Endereço principal</div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#f97316">○ Foto de perfil</div>
-          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#f97316">○ Bio preenchida</div>
-        </div>
-      </div>
     </div>
 
     <!-- ════ PEDIDOS ════ -->
