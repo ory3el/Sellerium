@@ -11,7 +11,7 @@ input,select,textarea{font-family:inherit}
 
 /* ── HEADER ──────────────────────────────────────────────── */
 .site-header{background: transparent;border-bottom:1px solid rgba(37,99,235,.1);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(37,99,235,.07)}
-.hdr-in{max-width:1360px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px;height:60px}
+.hdr-in{background: #fff;max-width:1360px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px;height:60px}
 .logo{font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#2563eb;letter-spacing:-.4px}
 .logo span{font-weight:300;color:#0f1a2e;opacity:.7}
 .logo-mkt{background:#2563eb;color:#fff;font-size:8px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle}
