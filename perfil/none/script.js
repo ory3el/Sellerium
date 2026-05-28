@@ -1,3 +1,7 @@
+function buttonLink(url) {
+  window.location.href = url;
+}
+
 // ── PANEL NAV ──────────────────────────────────────────────
 const labels = {profile:'Meu Perfil',orders:'Meus Pedidos',wishlist:'Lista de Desejos',coupons:'Meus Cupons',addresses:'Endereços',payments:'Pagamentos',notifications:'Notificações',security:'Segurança',reviews:'Avaliações',settings:'Configurações',logout:'Sair da Conta'};
 
