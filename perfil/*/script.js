@@ -64,7 +64,7 @@ function toast(msg, type='ok'){
     const { data: { session }, error } = await supabaseClient.auth.getSession();
 
     // 4. Barreira de Segurança: Se não tiver logado, manda de volta pra tela de login
-    if (!session || error) {
+    if (session) {
       window.location.href = '../'; // Ajuste o caminho se necessário
       return;
     }
