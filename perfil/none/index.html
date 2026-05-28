@@ -65,13 +65,13 @@
           <span class="nav-ico">👤</span><span class="nav-lbl">Meu Perfil</span><span class="nav-arrow">›</span>
         </button>
         <button class="nav-item" data-panel="orders" onclick="showPanel('orders',this)">
-          <span class="nav-ico">📦</span><span class="nav-lbl">Meus Pedidos</span>
+          <span class="nav-ico">📦</span><span class="nav-lbl">Meus Pedidos</span><span class="nav-arrow">›</span>
         </button>
         <button class="nav-item" data-panel="wishlist" onclick="showPanel('wishlist',this)">
-          <span class="nav-ico">❤️</span><span class="nav-lbl">Lista de Desejos</span>
+          <span class="nav-ico">❤️</span><span class="nav-lbl">Lista de Desejos</span><span class="nav-arrow">›</span>
         </button>
         <button class="nav-item" data-panel="coupons" onclick="showPanel('coupons',this)">
-          <span class="nav-ico">🎟️</span><span class="nav-lbl">Meus Cupons</span>
+          <span class="nav-ico">🎟️</span><span class="nav-lbl">Meus Cupons</span><span class="nav-arrow">›</span>
         </button>
         <button class="nav-item" data-panel="reviews" onclick="showPanel('reviews',this)">
           <span class="nav-ico">⭐</span><span class="nav-lbl">Minhas Avaliações</span><span class="nav-arrow">›</span>
@@ -123,6 +123,10 @@
       <div class="panel-hd">
         <div class="panel-hd-left"><h2>Meus Pedidos</h2><p>Acompanhe e gerencie seus pedidos</p></div>
       </div>
+      <div class="panel-hd">
+        <div class="panel-hd-left"><h2>Entre ou crie uma conta.</h2><p>Para acessar isso, primeiro faça login ou cadastre-se na Sellerium.</p></div>
+        <button class="btn-primary" onclick="buttonLink('../../login')">Fazer Login/Cadastro</button>
+      </div>
     </div>
 
     <!-- ════ FAVORITOS ════ -->
@@ -131,15 +135,9 @@
         <div class="panel-hd-left"><h2>Lista de Desejos</h2><p>8 produtos salvos</p></div>
         <button class="btn-primary" onclick="toast('Adicionando tudo ao carrinho! 🛒')">🛒 Adicionar tudo ao carrinho</button>
       </div>
-      <div class="card">
-        <div class="wish-grid">
-          <div class="wcard"><div class="wcard-img">⌚<button class="wcard-rm" onclick="event.stopPropagation();removeWish(this,'Smartwatch')">✕</button></div><div class="wcard-info"><div class="wcard-cat">Eletrônicos</div><div class="wcard-name">Smartwatch Pro X7</div><div><span class="wcard-price">R$ 189,90</span><span class="wcard-old">R$ 299</span></div><button class="wcard-add" onclick="toast('Adicionado ao carrinho! 🛒')">+ Adicionar ao carrinho</button></div></div>
-          <div class="wcard"><div class="wcard-img">🎧<button class="wcard-rm" onclick="event.stopPropagation();removeWish(this,'Fone')">✕</button></div><div class="wcard-info"><div class="wcard-cat">Eletrônicos</div><div class="wcard-name">Fone Bluetooth ANC Pro</div><div><span class="wcard-price">R$ 119,90</span><span class="wcard-old">R$ 199</span></div><button class="wcard-add" onclick="toast('Adicionado ao carrinho! 🛒')">+ Adicionar ao carrinho</button></div></div>
-          <div class="wcard"><div class="wcard-img">👟<button class="wcard-rm" onclick="event.stopPropagation();removeWish(this,'Tênis')">✕</button></div><div class="wcard-info"><div class="wcard-cat">Moda</div><div class="wcard-name">Tênis Running UltraLight</div><div><span class="wcard-price">R$ 199,90</span><span class="wcard-old">R$ 320</span></div><button class="wcard-add" onclick="toast('Adicionado ao carrinho! 🛒')">+ Adicionar ao carrinho</button></div></div>
-          <div class="wcard"><div class="wcard-img">💡<button class="wcard-rm" onclick="event.stopPropagation();removeWish(this,'Kit LED')">✕</button></div><div class="wcard-info"><div class="wcard-cat">Casa</div><div class="wcard-name">Kit LED Smart RGB 10m</div><div><span class="wcard-price">R$ 79,90</span><span class="wcard-old">R$ 130</span></div><button class="wcard-add" onclick="toast('Adicionado ao carrinho! 🛒')">+ Adicionar ao carrinho</button></div></div>
-          <div class="wcard"><div class="wcard-img">✨<button class="wcard-rm" onclick="event.stopPropagation();removeWish(this,'Skincare')">✕</button></div><div class="wcard-info"><div class="wcard-cat">Beleza</div><div class="wcard-name">Kit Skincare Vitamina C</div><div><span class="wcard-price">R$ 99,90</span><span class="wcard-old">R$ 160</span></div><button class="wcard-add" onclick="toast('Adicionado ao carrinho! 🛒')">+ Adicionar ao carrinho</button></div></div>
-          <div class="wcard"><div class="wcard-img">💆<button class="wcard-rm" onclick="event.stopPropagation();removeWish(this,'Massageador')">✕</button></div><div class="wcard-info"><div class="wcard-cat">Fitness</div><div class="wcard-name">Pistola de Massagem Pro</div><div><span class="wcard-price">R$ 129,90</span><span class="wcard-old">R$ 210</span></div><button class="wcard-add" onclick="toast('Adicionado ao carrinho! 🛒')">+ Adicionar ao carrinho</button></div></div>
-        </div>
+      <div class="panel-hd">
+        <div class="panel-hd-left"><h2>Entre ou crie uma conta.</h2><p>Para acessar isso, primeiro faça login ou cadastre-se na Sellerium.</p></div>
+        <button class="btn-primary" onclick="buttonLink('../../login')">Fazer Login/Cadastro</button>
       </div>
     </div>
 
