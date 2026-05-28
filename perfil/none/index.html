@@ -337,7 +337,7 @@
     <!-- ════ CONFIGURAÇÕES ════ -->
     <div class="panel" id="panel-settings">
       <div class="panel-hd">
-        <div class="panel-hd-left"><h2>Configurações</h2><p>Personalize sua experiência no DropShop</p></div>
+        <div class="panel-hd-left"><h2>Configurações</h2><p>Personalize sua experiência na Sellerium</p></div>
         <button class="btn-primary" onclick="toast('Configurações salvas! ✓')">💾 Salvar</button>
       </div>
       <div class="card">
@@ -349,27 +349,16 @@
         </div>
         <div class="settings-section">
           <div class="settings-title">Privacidade</div>
-          <div class="setting-row"><div class="setting-left"><h4>Perfil público</h4><p>Outros usuários podem ver seu perfil e avaliações</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
-          <div class="setting-row"><div class="setting-left"><h4>Histórico de compras visível</h4><p>Mostrar produtos comprados em recomendações</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
-          <div class="setting-row"><div class="setting-left"><h4>Personalização por IA</h4><p>Receber recomendações com base no comportamento</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
-          <div class="setting-row"><div class="setting-left"><h4>Compartilhar dados com parceiros</h4><p>Autorizar uso de dados para anúncios relevantes</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
+          <div class="panel-hd">
+        <div class="panel-hd-left"><h2>Entre ou crie uma conta.</h2><p>Para acessar isso, primeiro faça login ou cadastre-se na Sellerium.</p></div>
+        <button class="btn-primary" onclick="buttonLink('../../login')">Fazer Login/Cadastro</button>
+      </div>
         </div>
         <div class="settings-section" style="margin-bottom:0">
           <div class="settings-title">Acessibilidade</div>
           <div class="setting-row"><div class="setting-left"><h4>Fonte maior</h4><p>Aumentar tamanho do texto na interface</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
           <div class="setting-row"><div class="setting-left"><h4>Reduzir animações</h4><p>Desativar efeitos e transições</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
           <div class="setting-row"><div class="setting-left"><h4>Alto contraste</h4><p>Aumentar contraste para melhor legibilidade</p></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="danger-zone">
-          <h4>⚠️ Zona de Perigo</h4>
-          <p>Estas ações são irreversíveis. Proceda com cautela.</p>
-          <div class="btns">
-            <button class="btn-danger" onclick="toast('Exportando dados... você receberá um e-mail em até 24h','info')">📦 Exportar meus dados (LGPD)</button>
-            <button class="btn-danger" onclick="toast('Conta pausada. Você pode reativá-la a qualquer momento.','info')">⏸ Pausar conta</button>
-            <button class="btn-danger" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5" onclick="toast('Para excluir a conta, confirme por e-mail.','err')">🗑 Excluir conta permanentemente</button>
-          </div>
         </div>
       </div>
     </div>
