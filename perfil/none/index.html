@@ -132,7 +132,7 @@
     <!-- ════ FAVORITOS ════ -->
     <div class="panel" id="panel-wishlist">
       <div class="panel-hd">
-        <div class="panel-hd-left"><h2>Lista de Desejos</h2><p>Nenhum produto salvo ainda</p></div>
+        <div class="panel-hd-left"><h2>Lista de Desejos</h2><p>Visualize seus produtos salvos (0)</p></div>
       </div>
       <div class="panel-hd">
         <div class="panel-hd-left"><h2>Entre ou crie uma conta.</h2><p>Para acessar isso, primeiro faça login ou cadastre-se na Sellerium.</p></div>
@@ -144,38 +144,10 @@
     <div class="panel" id="panel-coupons">
       <div class="panel-hd">
         <div class="panel-hd-left"><h2>Meus Cupons</h2><p>Descontos disponíveis para você</p></div>
-        <button class="btn-outline" onclick="toast('Digite o código no carrinho 🎟️','info')">+ Adicionar cupom</button>
       </div>
-      <div class="card">
-        <div class="card-title"><span class="ct-ico">✅</span> Cupons Ativos</div>
-        <div class="coupon-card">
-          <div class="coupon-pct">10%</div>
-          <div class="coupon-info">
-            <h4>Desconto de Boas-vindas</h4>
-            <p>Válido para qualquer produto da loja</p>
-            <div class="coupon-exp">⏰ Expira em 31/01/2025</div>
-          </div>
-          <div class="coupon-code" onclick="copyCoupon('SAVE10')">SAVE10</div>
-        </div>
-        <div class="coupon-card">
-          <div class="coupon-pct">20%</div>
-          <div class="coupon-info">
-            <h4>Desconto Eletrônicos</h4>
-            <p>Exclusivo para a categoria eletrônicos</p>
-            <div class="coupon-exp">⏰ Expira em 15/02/2025</div>
-          </div>
-          <div class="coupon-code" onclick="copyCoupon('SAVE20')">SAVE20</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="ct-ico">⏳</span> Cupons Expirados</div>
-        <div style="opacity:.5">
-          <div class="coupon-card" style="background:#f8fafd;border-color:#e2e8f0">
-            <div class="coupon-pct" style="color:#94a3b8">15%</div>
-            <div class="coupon-info"><h4>Cupom Black Friday</h4><p>Expirado em 30/11/2024</p></div>
-            <div class="coupon-code" style="background:#f1f5f9;border-color:#e2e8f0;color:#94a3b8;pointer-events:none">BLUE15</div>
-          </div>
-        </div>
+      <div class="panel-hd">
+        <div class="panel-hd-left"><h2>Entre ou crie uma conta.</h2><p>Para acessar isso, primeiro faça login ou cadastre-se na Sellerium.</p></div>
+        <button class="btn-primary" onclick="buttonLink('../../login')">Fazer Login/Cadastro</button>
       </div>
     </div>
 
