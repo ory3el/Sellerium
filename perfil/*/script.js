@@ -65,7 +65,7 @@ function toast(msg, type='ok'){
 
     // 4. Barreira de Segurança: Se não tiver logado, manda de volta pra tela de login
     if (!session || error) {
-      window.location.href = '../login'; // Ajuste o caminho se necessário
+      window.location.href = '../'; // Ajuste o caminho se necessário
       return;
     }
 
