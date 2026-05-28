@@ -94,7 +94,7 @@ async function handleCredentialResponse(response) {
     toast('Erro ao autenticar com o Google.', 'err');
   } else {
     toast(`Bem-vindo, ${data.user.user_metadata.full_name || 'ao Sellerium'}! 🎉`);
-    setTimeout(() => window.location.href = '../painel.html', 1200);
+    setTimeout(() => window.location.href = '../', 1200);
   }
 }
 
@@ -126,7 +126,7 @@ const btn = document.getElementById('btnLogin');
     toast('E-mail ou senha incorretos.', 'err');
   } else {
     toast('Login realizado com sucesso! 🎉');
-    setTimeout(() => window.location.href = '../painel.html', 1200);
+    setTimeout(() => window.location.href = '../', 1200);
   }
 }
 
@@ -182,7 +182,7 @@ async function verificarSessao() {
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (session && window.location.pathname.includes('index.html')) {
 
-    window.location.href = '../painel.html';
+    window.location.href = '../';
   }
 }
 
@@ -307,7 +307,7 @@ function socialLogin(prov){
         console.log("Token do Facebook recebido com sucesso:", accessToken);
         
         toast('Login com Facebook efetuado! Redirecionando... 🎉');
-        setTimeout(() => window.location.href = '../painel.html', 1200);
+        setTimeout(() => window.location.href = '../', 1200);
       } else {
         toast('Autenticação cancelada ou recusada.', 'err');
       }
