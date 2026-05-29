@@ -1,3 +1,7 @@
+function buttonLink(url) {
+  window.location.href = url;
+}
+
 // ══ DATA ════════════════════════════════════════════════
 const revData = [12.4,18.2,15.6,21.8,19.2,23.4,26.8,22.1,28.4,24.6,31.2,38.8];
 const months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
