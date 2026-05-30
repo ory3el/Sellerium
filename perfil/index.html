@@ -67,10 +67,14 @@
       <div class="sb-section">
         <div class="sb-sec-label">Conta</div>
         <button class="nav-item active" data-panel="profile" onclick="showPanel('profile',this)">
-          <span class="nav-ico">👤</span><span class="nav-lbl">Meu Perfil</span><span class="nav-arrow">›</span>
+          <span class="nav-ico">
+            <img src="../images/icons/full/user.png" style="width: 20px; height: auto; display: block;" alt="User"/>
+          </span><span class="nav-lbl">Meu Perfil</span><span class="nav-arrow">›</span>
         </button>
         <button class="nav-item" data-panel="orders" onclick="showPanel('orders',this)">
-          <span class="nav-ico">📦</span><span class="nav-lbl">Meus Pedidos</span>
+          <span class="nav-ico">
+            <img src="../images/icons/full/box.png" style="width: 20px; height: auto; display: block;" alt="Box"/>
+          </span><span class="nav-lbl">Meus Pedidos</span>
           <span class="nav-badge">0</span>
         </button>
         <button class="nav-item" data-panel="wishlist" onclick="showPanel('wishlist',this)">
@@ -149,7 +153,9 @@
             </div>
           </div>
         </div>
-        <div class="card-title"><span class="ct-ico">👤</span> Informações Pessoais</div>
+        <div class="card-title"><span class="ct-ico">
+          <img src="../images/icons/full/user.png" style="width: 20px; height: auto; display: block;" alt="User"/>
+        </span> Informações Pessoais</div>
         <div class="fgrid">
           <div class="fgrp"><label>Nome</label><input class="finput" value="" placeholder="Seu nome"></div>
           <div class="fgrp"><label>Sobrenome</label><input class="finput" value="" placeholder="Sobrenome"></div>
@@ -174,7 +180,9 @@
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="ct-ico">📊</span> Nível de Completude do Perfil</div>
+        <div class="card-title"><span class="ct-ico">
+          <img src="../images/icons/full/dashboard.png" style="width: 20px; height: auto; display: block;" alt="Dashboard"/>
+        </span> Nível de Completude do Perfil</div>
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
           <div style="flex:1;background:#e2e8f0;border-radius:100px;height:8px;overflow:hidden">
             <div style="width:33.33%;height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:100px;transition:.6s"></div>
@@ -218,9 +226,15 @@
             <span class="order-status os-transit">🚚 Em Trânsito</span>
           </div>
           <div class="order-track">
-            <div class="track-step done"><div class="ts-dot">✓</div><div class="ts-lbl">Confirmado</div></div>
-            <div class="track-step done"><div class="ts-dot">✓</div><div class="ts-lbl">Preparando</div></div>
-            <div class="track-step curr"><div class="ts-dot">📦</div><div class="ts-lbl">Trânsito</div></div>
+            <div class="track-step done"><div class="ts-dot">
+              <img src="../images/icons/full/check.png" style="width: 20px; height: auto; display: block;" alt="Check Mark"/>
+            </div><div class="ts-lbl">Confirmado</div></div>
+            <div class="track-step done"><div class="ts-dot">
+              <img src="../images/icons/full/check.png" style="width: 20px; height: auto; display: block;" alt="Check Mark"/>
+            </div><div class="ts-lbl">Preparando</div></div>
+            <div class="track-step curr"><div class="ts-dot">
+              <img src="../images/icons/full/box.png" style="width: 20px; height: auto; display: block;" alt="Box"/>
+            </div><div class="ts-lbl">Trânsito</div></div>
             <div class="track-step"><div class="ts-dot">🚚</div><div class="ts-lbl">Saiu p/ entrega</div></div>
             <div class="track-step"><div class="ts-dot">🏠</div><div class="ts-lbl">Entregue</div></div>
           </div>
@@ -380,7 +394,9 @@
         <button class="btn-primary" onclick="toast('Adicionando cartão','info')">+ Novo cartão</button>
       </div>
       <div class="card">
-        <div class="card-title"><span class="ct-ico">💳</span> Cartões Salvos</div>
+        <div class="card-title"><span class="ct-ico">
+          <img src="../images/icons/full/card.png" style="width: 20px; height: auto; display: block;" alt="Card"/>
+        </span> Cartões Salvos</div>
         <div class="pay-card">
           <div class="pay-ico visa">VISA</div>
           <div class="pay-info"><div class="pay-name">Visa terminado em 4231 <span class="pay-default">Principal</span></div><div class="pay-detail">Ana Carolina · Expira 08/2027</div></div>
@@ -411,7 +427,9 @@
         <button class="btn-outline" style="margin-top:10px;font-size:12px" onclick="toast('Cadastrar nova chave PIX','info')">+ Adicionar chave PIX</button>
       </div>
       <div class="card">
-        <div class="card-title"><span class="ct-ico">📊</span> Histórico de Pagamentos</div>
+        <div class="card-title"><span class="ct-ico">
+          <img src="../images/icons/full/dashboard.png" style="width: 20px; height: auto; display: block;" alt="Dashboard"/>
+        </span> Histórico de Pagamentos</div>
         <div style="display:flex;flex-direction:column;gap:0">
           <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f1f5f9;font-size:13px">
             <div><div style="font-weight:600">DS-2025-0042 — Smartwatch + Fone</div><div style="font-size:11px;color:#94a3b8">12 Jan 2025 · Visa ••4231</div></div>
@@ -436,9 +454,13 @@
         <button class="btn-outline" onclick="setAllNotifs()">✓ Ativar todas</button>
       </div>
       <div class="card">
-        <div class="card-title"><span class="ct-ico">📦</span> Pedidos e Entregas</div>
+        <div class="card-title"><span class="ct-ico">
+          <img src="../images/icons/full/box.png" style="width: 20px; height: auto; display: block;" alt="Box"/>
+        </span> Pedidos e Entregas</div>
         <div class="notif-list">
-          <div class="notif-row"><div class="notif-left"><div class="notif-ico">📦</div><div class="notif-info"><h4>Atualização de pedido</h4><p>Notificações de status, envio e entrega</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
+          <div class="notif-row"><div class="notif-left"><div class="notif-ico">
+            <img src="../images/icons/full/box.png" style="width: 20px; height: auto; display: block;" alt="Box"/>
+          </div><div class="notif-info"><h4>Atualização de pedido</h4><p>Notificações de status, envio e entrega</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
           <div class="notif-row"><div class="notif-left"><div class="notif-ico">🚚</div><div class="notif-info"><h4>Saiu para entrega</h4><p>Avise quando o pedido estiver a caminho</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
           <div class="notif-row"><div class="notif-left"><div class="notif-ico">✅</div><div class="notif-info"><h4>Pedido entregue</h4><p>Confirmação de entrega bem-sucedida</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
           <div class="notif-row"><div class="notif-left"><div class="notif-ico">↩️</div><div class="notif-info"><h4>Status de devolução</h4><p>Atualizações sobre solicitações de troca/devolução</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
@@ -458,7 +480,9 @@
         <div class="notif-list">
           <div class="notif-row"><div class="notif-left"><div class="notif-ico">📧</div><div class="notif-info"><h4>E-mail</h4><p>ana.carolina@email.com</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
           <div class="notif-row"><div class="notif-left"><div class="notif-ico">📱</div><div class="notif-info"><h4>SMS / WhatsApp</h4><p>(11) 99999-8888</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp" checked><div class="toggle-lbl"></div></label></div>
-          <div class="notif-row"><div class="notif-left"><div class="notif-ico">🔔</div><div class="notif-info"><h4>Push no navegador</h4><p>Notificações em tempo real</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
+          <div class="notif-row"><div class="notif-left"><div class="notif-ico">
+            <img src="../images/icons/full/bell.png" style="width: 20px; height: auto; display: block;" alt="Bell"/>
+          </div><div class="notif-info"><h4>Push no navegador</h4><p>Notificações em tempo real</p></div></div><label class="toggle-wrap"><input type="checkbox" class="toggle-inp"><div class="toggle-lbl"></div></label></div>
         </div>
       </div>
     </div>
@@ -479,7 +503,9 @@
           <div class="security-item"><div class="sec-left"><div class="sec-ico blue">🔑</div><div class="sec-info"><h4>Senha da conta</h4><p>Última atualização há 30 dias</p></div></div><div style="display:flex;align-items:center;gap:8px"><span class="sec-status sec-on">● Configurada</span><button class="btn-xs blue" onclick="changePwd()">Alterar</button></div></div>
           <div class="security-item"><div class="sec-left"><div class="sec-ico green">📧</div><div class="sec-info"><h4>E-mail verificado</h4><p>ana.carolina@email.com</p></div></div><div style="display:flex;align-items:center;gap:8px"><span class="sec-status sec-on">● Verificado</span></div></div>
           <div class="security-item"><div class="sec-left"><div class="sec-ico green">📱</div><div class="sec-info"><h4>Celular verificado</h4><p>(11) 99999-8888</p></div></div><div style="display:flex;align-items:center;gap:8px"><span class="sec-status sec-on">● Verificado</span></div></div>
-          <div class="security-item"><div class="sec-left"><div class="sec-ico yellow">🔒</div><div class="sec-info"><h4>Autenticação em 2 fatores (2FA)</h4><p>Proteção extra ao fazer login</p></div></div><div style="display:flex;align-items:center;gap:8px"><span class="sec-status sec-off">○ Inativo</span><button class="btn-xs blue" onclick="toast('Configurando 2FA...','info')">Ativar</button></div></div>
+          <div class="security-item"><div class="sec-left"><div class="sec-ico yellow">
+            <img src="../images/icons/full/padlock.png" style="width: 20px; height: auto; display: block;" alt="Padlock"/>
+          </div><div class="sec-info"><h4>Autenticação em 2 fatores (2FA)</h4><p>Proteção extra ao fazer login</p></div></div><div style="display:flex;align-items:center;gap:8px"><span class="sec-status sec-off">○ Inativo</span><button class="btn-xs blue" onclick="toast('Configurando 2FA...','info')">Ativar</button></div></div>
           <div class="security-item"><div class="sec-left"><div class="sec-ico blue">🌐</div><div class="sec-info"><h4>Contas vinculadas</h4><p>Google, Facebook</p></div></div><div style="display:flex;align-items:center;gap:8px"><span class="sec-status sec-on">● 2 contas</span><button class="btn-xs gray" onclick="toast('Gerenciando vínculos','info')">Gerenciar</button></div></div>
         </div>
       </div>
