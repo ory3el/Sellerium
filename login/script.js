@@ -1,3 +1,7 @@
+function buttonLink(url) {
+  window.location.href = url;
+}
+
 // ── 1. INICIALIZAR O SUPABASE ──────────────────
 const SUPABASE_URL = "https://putdougjaadksnfyfbgc.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_UJYrU4E9UtTywzq3ghGLsQ_fRHE9nRR";
