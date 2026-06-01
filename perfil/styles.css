@@ -113,6 +113,8 @@ textarea.finput{resize:vertical;min-height:80px}
 .btn-xs.blue:hover{background:#dbeafe}
 .btn-xs.gray{background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0}
 .btn-xs.gray:hover{background:#e2e8f0}
+.btn-xs.gray.red{background:#f1f5f9;color:#ba0202;border:1px solid #e2e8f0}
+.btn-xs.gray.red:hover{background:#e2e8f0}
 
 /* orders */
 .order-card{background:#f8fafd;border:1.5px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:12px;transition:all .2s}
