@@ -165,7 +165,7 @@ img{max-width:100%;display:block}
 .hcard:hover{background:rgba(0,0,0,.15);transform:translateX(-4px)}
 .hcard-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .hcard-title{font-size:13px;font-weight:600;color:#000;margin-bottom:2px}
-.hcard-val{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff}
+.hcard-val{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#000}
 .hcard-detail{font-size:10px;color:rgba(0,0,0,.55);margin-top:1px}
 
 /* sections */
