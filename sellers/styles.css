@@ -146,11 +146,11 @@ img{max-width:100%;display:block}
 .land-logo sup{background:var(--orange);color:#fff;font-size:8px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;letter-spacing:.8px;text-transform:uppercase;vertical-align:top;margin-top:3px;display:inline-block}
 
 /* hero */
-.land-hero{background:linear-gradient(135deg,#0f1a2e 0%,#1e3a8a 35%,#2563eb 70%,#1d4ed8 100%);padding:80px 24px;position:relative;overflow:hidden}
+.land-hero{background:linear-gradient(135deg,#fff 0%,#fff 35%,#2563eb 70%,#fff 100%);padding:80px 24px;position:relative;overflow:hidden}
 .land-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px}
 .land-hero::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%)}
 .land-hero-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
-.land-hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:20px}
+.land-hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.2);color:rgba(255,255,255,.9);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:20px}
 .land-hero-pill::before{content:'';width:6px;height:6px;background:var(--orange);border-radius:50%;animation:blink 1.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .land-hero h1{font-family:'Sora',sans-serif;font-size:48px;font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-.8px}
