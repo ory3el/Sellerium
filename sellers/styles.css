@@ -146,7 +146,7 @@ img{max-width:100%;display:block}
 .land-logo sup{background:var(--orange);color:#fff;font-size:8px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;letter-spacing:.8px;text-transform:uppercase;vertical-align:top;margin-top:3px;display:inline-block}
 
 /* hero */
-.land-hero{background:linear-gradient(135deg,#fff 0%,#fff 35%,#2563eb 70%,#fff 100%);padding:80px 24px;position:relative;overflow:hidden}
+.land-hero{background:linear-gradient(135deg,#fff 0%,#fff 35%,#749ffc 70%,#fff 100%);padding:80px 24px;position:relative;overflow:hidden}
 .land-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px}
 .land-hero::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%)}
 .land-hero-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
