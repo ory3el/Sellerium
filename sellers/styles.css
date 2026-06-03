@@ -146,7 +146,7 @@ img{max-width:100%;display:block}
 .land-logo sup{background:var(--orange);color:#fff;font-size:8px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;letter-spacing:.8px;text-transform:uppercase;vertical-align:top;margin-top:3px;display:inline-block}
 
 /* hero */
-.land-hero{background:linear-gradient(135deg,#fff 0%,#fff 35%,#749ffc 70%,#fff 100%);padding:80px 24px;position:relative;overflow:hidden}
+.land-hero{background:linear-gradient(135deg,#fff 0%,#fff 35%,#a6c8ff 70%,#fff 100%);padding:80px 24px;position:relative;overflow:hidden}
 .land-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px}
 .land-hero::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%)}
 .land-hero-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
@@ -165,7 +165,7 @@ img{max-width:100%;display:block}
 .hcard:hover{background:rgba(0,0,0,.15);transform:translateX(-4px)}
 .hcard-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .hcard-title{font-size:13px;font-weight:600;color:#000;margin-bottom:2px}
-.hcard-val{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#147ef5}
+.hcard-val{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff}
 .hcard-detail{font-size:10px;color:rgba(0,0,0,.55);margin-top:1px}
 
 /* sections */
